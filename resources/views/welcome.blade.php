@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@400;500&family=Ubuntu&display=swap" rel="stylesheet">
-
+    <script src="js/nav2d.js"></script>
     <script type="text/javascript" src="http://static.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
     <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
     <script src="js/roslibjs.js"></script>
@@ -142,7 +142,7 @@
         ros.on('connection', function() {
             title.innerHTML = 'Available';
             console.log('Connected to websocket server.');
-            document.getElementById('btnTini').style.backgroundColor = 'blue';
+            document.getElementById('btnTini').style.backgroundColor = '#04e53c';
         });
 
         ros.on('error', function(error) {
@@ -171,10 +171,7 @@
             serverName: '/move_base'
         });
         // Scale the canvas to fit to the map
-        gridClient.on('change', function(){
-            viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
-            viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
-        });
+
         var ip = ['localhost']
         var robotMarkers = [];
         var topics = [];
@@ -262,44 +259,6 @@
 
             document.getElementById('btnMenu1').style.background = 'linear-gradient(to right, #8111f9, #58abef)';
             document.getElementById('btnMenu1').style.color = '#ffffff';
-
-
-
-        // ------------------------------------------------------------------------------- //
-
-        var mapBox2 = document.getElementById('mapBox2');
-        var newWidth2 = ((mapBox2.offsetHeight * 160) / 288);
-        var res = mapBox2.offsetWidth - newWidth2;
-
-        document.getElementById('map2').style.marginLeft = res/2 + 'px';
-
-
-        var viewer2 = new ROS2D.Viewer({
-        divID : 'map2',
-        width : newWidth2,
-        height : mapBox2.offsetHeight ,
-
-        });
-        let gridClient2 = new NAV2D.OccupancyGridClientNav({
-            ros : ros,
-            rootObject : viewer2.scene,
-            viewer: viewer2,
-            serverName: '/move_base'
-        });
-        // Scale the canvas to fit to the map
-        gridClient2.on('change', function(){
-            viewer2.scaleToDimensions(gridClient2.currentGrid.width, gridClient2.currentGrid.height);
-            viewer2.shift(gridClient2.currentGrid.pose.position.x, gridClient2.currentGrid.pose.position.y);
-        });
-        var ip = ['localhost']
-        var robotMarkers = [];
-        var topics = [];
-
-
-
-        for(let i = 0; i < robotMarkers.length; i++){
-                gridClient2.rootObject.addChild(robotMarkers[i]);
-            }
 
 
 
