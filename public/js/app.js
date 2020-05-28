@@ -1964,6 +1964,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      actualDoing: 'Actual Mission',
+      actualStatus: 'Ocupied'
+    };
+  },
   mounted: function mounted() {
     var ros = new ROSLIB.Ros({
       url: 'ws://localhost:9090'
@@ -2032,12 +2038,25 @@ __webpack_require__.r(__webpack_exports__);
 
     for (var _i = 0; _i < robotMarkers.length; _i++) {
       gridClient.rootObject.addChild(robotMarkers[_i]);
-    }
+    } // Monitoring /move_base/result
+
+
+    var move_baseListener = new ROSLIB.Topic({
+      ros: ros,
+      name: '/move_base/result',
+      messageType: 'move_base_msgs/MoveBaseActionResult'
+    });
+    move_baseListener.subscribe(function (actionResult) {
+      console.log('Received message on ' + move_baseListener.name + 'status: 1');
+      this.changeStatusFunc(); // actionResult.status.status == 2 (goal cancelled)
+      // actionResult.status.status == 3 (goal reached)
+      //    move_baseListener.unsubscribe();
+    });
   },
-  data: function data() {
-    return {
-      actualDoing: 'Actual Mission'
-    };
+  methods: {
+    changeStatusFunc: function changeStatusFunc() {
+      return this.actualStatus = '1';
+    }
   }
 });
 
@@ -37857,7 +37876,11 @@ var render = function() {
     _c("div", { staticClass: "border boxInfo rounded p-2 pt-3" }, [
       _c("p", { staticClass: "mb-2 titleInfoData" }, [_vm._v("Actual status")]),
       _vm._v(" "),
-      _vm._m(0),
+      _c(
+        "div",
+        { staticClass: "bg-primary infoBoxData rounded text-center " },
+        [_c("span", [_vm._v(_vm._s(_vm.actualStatus))])]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -37865,27 +37888,17 @@ var render = function() {
         [_c("span", [_vm._v("Doing: " + _vm._s(_vm.actualDoing))])]
       ),
       _vm._v(" "),
-      _vm._m(1)
+      _vm._m(0)
     ]),
+    _vm._v(" "),
+    _vm._m(1),
     _vm._v(" "),
     _vm._m(2),
     _vm._v(" "),
-    _vm._m(3),
-    _vm._v(" "),
-    _vm._m(4)
+    _vm._m(3)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "bg-primary infoBoxData rounded text-center " },
-      [_c("span", [_vm._v("Ocupied")])]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -50866,8 +50879,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Nico\Desktop\AprosoftVue\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Nico\Desktop\AprosoftVue\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/nico/Escritorio/AprosoftVue/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/nico/Escritorio/AprosoftVue/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
