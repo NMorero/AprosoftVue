@@ -102,6 +102,14 @@ button:focus {outline:0;}
     display: inline-block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.boxInfoLarge{
+    width: 63%;
+    height: 35%;
+    margin-left: 1rem;
+
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .last{
     margin-right: 0rem;
 }
@@ -150,6 +158,18 @@ canvas{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
+
+
+.bgDegraded{
+    background: linear-gradient(to right, #58abef , #8111f9);
+    color: white;
+}
+
+.boxInfoModal{
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 
 
 @media (min-width: 768px) {

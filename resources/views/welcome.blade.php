@@ -13,6 +13,8 @@
     <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
     <script src="js/roslibjs.js"></script>
     <script src="js/ros2djs.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Aprosoft</title>
 </head>
 <body>
@@ -23,11 +25,9 @@
             <div class="bg-light border-right" id="sidebar-wrapper">
               <div class="sidebar-heading">Aprosoft</div>
               <div class="list-group list-group-flush">
-
                 <button class="list-group-item btnMenu" id="btnMenu1" onclick="activeBtn('btnMenu1', 'dashboard'); ">Dashboard</button>
                 <button class="list-group-item btnMenu" id="btnMenu2" onclick="activeBtn('btnMenu2', 'mission'); ">Mission</button>
-                <button class="list-group-item btnMenu" id="btnMenu3" onclick="activeBtn('btnMenu3', 'status'); ">Status</button>
-
+                <button class="list-group-item btnMenu" id="btnMenu3" onclick="activeBtn('btnMenu3', 'status'); " disabled>Status</button>
               </div>
             </div>
             <!-- /#sidebar-wrapper -->
@@ -65,18 +65,101 @@
 
                     <div class="border boxInfo rounded p-2 pt-3">
                         <p class="mb-2 titleInfoData">Orders</p>
-                        <div class="hoverButton infoBoxData rounded text-left pl-2 pt-1">
+                        <div class="hoverButton infoBoxData rounded text-left pl-2 pt-1" data-toggle="modal" data-target="#chooseMissionModal">
                             <span>Choose mission</span>
                         </div>
 
-                        <div class="hoverButton infoBoxData rounded text-left pl-2 pt-1">
+                        <button  class="hoverButton infoBoxData rounded text-left pl-2 pt-1" data-toggle="modal" data-target="#chooseTaskModal">
                             <span>Choose task</span>
-                        </div>
+                        </button>
 
-                        <div class="hoverButton infoBoxData rounded text-left pl-2 pt-1">
+                        <div id="cancelActual" class="hoverButton infoBoxData rounded text-left pl-2 pt-1">
                             <span>Cancel</span>
                         </div>
                     </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="chooseTaskModal" tabindex="-1" role="dialog" aria-labelledby="chooseTaskModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bgDegraded">
+                            <h5 class="modal-title" id="chooseTaskModalLabel">Choose task</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body row justify-content-around m-0 p-3">
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 1</span>
+                                </button>
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 2</span>
+                                </button>
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 3</span>
+                                </button>
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 4</span>
+                                </button>
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 5</span>
+                                </button>
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 6</span>
+                                </button>
+                            </div>
+                            <div class="modal-footer bgDegraded">
+                            <button type="button" class="btn bg-none text-white" data-dismiss="modal">Cancel</button>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- ----- END MODAL -->
+
+                     <!-- Modal -->
+                     <div class="modal fade" id="chooseMissionModal" tabindex="-1" role="dialog" aria-labelledby="chooseMissionModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bgDegraded">
+                            <h5 class="modal-title" id="chooseMissionModalLabel">Choose mission</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body row justify-content-around m-0 p-3">
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <h6>Mission 1</h6>
+                                    <span>
+                                        Ir a posicion 1 <br> Ir a posicion 2
+                                    </span>
+                                </button>
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <h6>Mission 2</h6>
+                                    <span>
+                                        Ir a posicion 4 <br> Ir a posicion 1 <br> Ir a posicion 2
+                                    </span>
+
+                                </button>
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <h6>Mission 3</h6>
+                                    <span>
+                                        Ir a posicion 2 <br> Ir a posicion 1 <br> Ir a posicion 4
+                                    </span>
+
+                                </button>
+                            </div>
+                            <div class="modal-footer bgDegraded">
+                            <button type="button" class="btn bg-none text-white" data-dismiss="modal">Cancel</button>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- ----- END MODAL -->
+
 
                     <div class="border boxInfo rounded p-2 pt-3 last">
                         <p class="mb-2 titleInfoData">Last missions</p>
@@ -93,6 +176,8 @@
                         </div>
                     </div>
 
+
+
                     <div id="mapBox">
                         <div id="map">
 
@@ -104,17 +189,162 @@
                 <div id="mission" class="primaryContent" >
 
                     <div class="border boxInfo rounded p-2 pt-3">
-                        <p class="mb-4 titleInfoData">Missions</p>
-                        <div class="hoverButton infoBoxData rounded text-center pt-1">
+                        <p class="mb-4 titleInfoData">Tasks</p>
+                        <button id="" class="hoverButton infoBoxData rounded text-center pt-1" data-toggle="modal" data-target="#addTaskModal">
                             <span>Add</span>
-                        </div>
+                        </button>
 
-                        <div class="hoverButton infoBoxData rounded text-center pl-2 pt-1 ">
+                        <button id="" class="hoverButton infoBoxData rounded text-center pt-1" data-toggle="modal" data-target="#adminTaskModal">
                             <span>Administrate</span>
-                        </div>
+                        </button>
 
                     </div>
 
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="adminTaskModal" tabindex="-1" role="dialog" aria-labelledby="adminTaskModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bgDegraded">
+                            <h5 class="modal-title" id="adminTaskModalLabel">Tasks</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body row justify-content-around m-0 p-3">
+                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 1</span>
+                                </div>
+                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 2</span>
+                                </div>
+                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 3</span>
+                                </div>
+                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 4</span>
+                                </div>
+                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 5</span>
+                                </div>
+                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <span>Ir a posicion 6</span>
+                                </div>
+                            </div>
+                            <div class="modal-footer bgDegraded">
+                            <button type="button" class="btn bg-none text-white" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn border bg-none text-white">Save changes</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- ----- END MODAL -->
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bgDegraded">
+                            <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body row justify-content-around m-0 p-3">
+                                <form action="">
+
+                                </form>
+                            </div>
+                            <div class="modal-footer bgDegraded">
+                            <button type="button" class="btn bg-none text-white" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn border bg-none text-white">Save changes</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- ----- END MODAL -->
+
+
+                    <div class="border boxInfo rounded p-2 pt-3">
+                        <p class="mb-4 titleInfoData">Missions</p>
+                        <button id="addTask" class="hoverButton infoBoxData rounded text-center pt-1" data-toggle="modal" data-target="#addMissionModal">
+                            <span>Add</span>
+                        </button>
+
+                        <button class="hoverButton infoBoxData rounded text-center pl-2 pt-1 "  data-toggle="modal" data-target="#adminMissionModalcd ">
+                            <span>Administrate</span>
+                        </button>
+
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="adminMissionModal" tabindex="-1" role="dialog" aria-labelledby="adminMissionModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bgDegraded">
+                            <h5 class="modal-title" id="adminMissionModalLabel">Choose mission</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body row justify-content-around m-0 p-3">
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <h6>Mission 1</h6>
+                                    <span>
+                                        Ir a posicion 1 <br> Ir a posicion 2
+                                    </span>
+                                </button>
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <h6>Mission 2</h6>
+                                    <span>
+                                        Ir a posicion 4 <br> Ir a posicion 1 <br> Ir a posicion 2
+                                    </span>
+
+                                </button>
+                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                                    <h6>Mission 3</h6>
+                                    <span>
+                                        Ir a posicion 2 <br> Ir a posicion 1 <br> Ir a posicion 4
+                                    </span>
+
+                                </button>
+                            </div>
+                            <div class="modal-footer bgDegraded">
+                            <button type="button" class="btn bg-none text-white" data-dismiss="modal">Cancel</button>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- ----- END MODAL -->
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="addMissionModal" tabindex="-1" role="dialog" aria-labelledby="addMissionModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bgDegraded">
+                            <h5 class="modal-title" id="addMissionModalLabel">Add Task</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body row justify-content-around m-0 p-3">
+                                <form action="">
+
+                                </form>
+                            </div>
+                            <div class="modal-footer bgDegraded">
+                            <button type="button" class="btn bg-none text-white" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn border bg-none text-white">Save changes</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- ----- END MODAL -->
 
 
 
@@ -136,7 +366,7 @@
         var title = document.getElementById('actualStatus');
             title.innerHTML = 'Disconected';
         var ros = new ROSLIB.Ros({
-        url : 'ws://localhost:9090'
+            url : 'ws://localhost:9090'
         });
 
         ros.on('connection', function() {
@@ -164,15 +394,40 @@
         height : mapBox.offsetHeight ,
 
         });
-        let gridClient = new NAV2D.OccupancyGridClientNav({
+        var gridClient = new ROS2D.OccupancyGridClient({
+        ros : ros,
+        rootObject : viewer.scene
+        });
+
+        gridClient.on('change', function(){
+        viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
+        viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
+        });
+
+
+         // ----------------------------------------- //
+
+
+         document.getElementById('map2').style.marginLeft = res/2 + 'px';
+        // Create the main viewer.
+        var viewer2 = new ROS2D.Viewer({
+        divID : 'map2',
+        width : newWidth,
+        height : mapBox.offsetHeight ,
+        });
+
+        // Setup the map client.
+        let gridClient2 = new NAV2D.OccupancyGridClientNav({
             ros : ros,
-            rootObject : viewer.scene,
-            viewer: viewer,
+            rootObject : viewer2.scene,
+            viewer: viewer2,
             serverName: '/move_base'
         });
         // Scale the canvas to fit to the map
 
-        var ip = ['localhost']
+        // Scale the canvas to fit to the map
+
+        var ip = ['localhost', 'localhost'];
         var robotMarkers = [];
         var topics = [];
 
@@ -211,10 +466,9 @@
                 topics.push(poseTopic);
                 createFunc('subscribe', poseTopic, robotMarker);
             }
+            gridClient.rootObject.addChild(robotMarkers[0]);
+            gridClient2.rootObject.addChild(robotMarkers[1]);
 
-        for(let i = 0; i < robotMarkers.length; i++){
-                gridClient.rootObject.addChild(robotMarkers[i]);
-            }
 
 
                 // Monitoring /move_base/result
@@ -223,10 +477,13 @@
             name : '/move_base/result',
             messageType : 'move_base_msgs/MoveBaseActionResult'
         });
+
         var title = document.getElementById('actualStatus');
             console.log(title.innerHTML);
         move_baseListener.subscribe(function(actionResult) {
             console.log('Received message on ' + move_baseListener.name + 'status: 1');
+
+
             title.innerHTML = 'Available';
 
             // actionResult.status.status == 2 (goal cancelled)
@@ -256,16 +513,90 @@
             console.log('Received message on feedbacfk ' + actionResult);
 
         });
+        document.getElementById('btnMenu1').style.background = 'linear-gradient(to right, #8111f9, #58abef)';
+        document.getElementById('btnMenu1').style.color = '#ffffff';
 
-            document.getElementById('btnMenu1').style.background = 'linear-gradient(to right, #8111f9, #58abef)';
-            document.getElementById('btnMenu1').style.color = '#ffffff';
+        var amcl_poseEcho = new ROSLIB.Topic({
+            ros : ros,
+            name : '/amcl_pose',
+            messageType : 'geometry_msgs/PoseWithCovarianceStamped'
+        });
+
+        function getActualPose(){
+            amcl_poseEcho.subscribe(function(pose) {
+                console.log('x: ' + pose.pose.pose.position.x);
+                console.log('y: ' + pose.pose.pose.position.y);
+            amcl_poseEcho.unsubscribe();
+            });
+        }
+        var add = document.getElementById('addTask');
+        add.addEventListener("click", getActualPose);
+
+        var chooseTask = document.getElementById('chooseTask');
+        chooseTask.addEventListener("click", sendGoal);
+
+        function sendGoal(){
+            var actionClient = new ROSLIB.ActionClient({
+                ros : ros,
+                serverName : '/move_base',
+                actionName : 'move_base_msgs/MoveBaseAction'
+            });
 
 
+            var positionVec3 = new ROSLIB.Vector3(null);
+            var orientation = new ROSLIB.Quaternion({x:0, y:0, z:0, w:1.0});
 
+            positionVec3.x = 7.662799231901053;
+            positionVec3.y = -1.38045495628809;
+
+            var pose = new ROSLIB.Pose({
+                position : positionVec3,
+                orientation : orientation
+            });
+
+            var goal = new ROSLIB.Goal({
+                actionClient : actionClient,
+                goalMessage : {
+
+                    target_pose : {
+                    header : {
+                        frame_id : 'map'
+                    },
+                    pose : pose
+                    }
+                }
+                });
+            goal.send();
+
+        }
+
+
+        cmd_vel_listener = new ROSLIB.Topic({
+            ros : ros,
+            name : "/cmd_vel",
+            messageType : 'geometry_msgs/Twist'
+        });
+
+        move = function (linear, angular) {
+            var twist = new ROSLIB.Message({
+            linear: {
+                x: linear,
+                y: 0,
+                z: 0
+            },
+            angular: {
+                x: 0,
+                y: 0,
+                z: angular
+            }
+            });
+            cmd_vel_listener.publish(twist);
+        }
 
     </script>
 
     <script>
+
         function activeBtn(btn, content){
                 var btns = document.querySelectorAll('.btnMenu');
                 btns.forEach(btn => {
@@ -282,7 +613,11 @@
                 });
                 document.getElementById(content).style.display = 'block';
             }
-    </script>
 
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>
