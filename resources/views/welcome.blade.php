@@ -24,9 +24,9 @@
               <div class="sidebar-heading">Aprosoft</div>
               <div class="list-group list-group-flush">
 
-                <button class="list-group-item btnMenu" id="btnMenu1" onclick="activeBtn('btnMenu1'); ">Dashboard</button>
-                <button class="list-group-item btnMenu" id="btnMenu2" onclick="activeBtn('btnMenu2'); ">Mission</button>
-                <button class="list-group-item btnMenu" id="btnMenu3" onclick="activeBtn('btnMenu3'); ">Status</button>
+                <button class="list-group-item btnMenu" id="btnMenu1" onclick="activeBtn('btnMenu1', 'dashboard'); ">Dashboard</button>
+                <button class="list-group-item btnMenu" id="btnMenu2" onclick="activeBtn('btnMenu2', 'mission'); ">Mission</button>
+                <button class="list-group-item btnMenu" id="btnMenu3" onclick="activeBtn('btnMenu3', 'status'); ">Status</button>
 
               </div>
             </div>
@@ -47,48 +47,48 @@
             </div>
 
 
-                <div id="dashboard" class="">
+                <div id="dashboard" class="primaryContent">
                     <div class="border boxInfo rounded p-2 pt-3">
                         <p class="mb-2 titleInfoData">Actual status</p>
-                        <div class="bg-primary infoBoxData rounded text-center pt-1">
+                        <div class="spanBoxInfo infoBoxData rounded text-center pt-1">
                             <span id="actualStatus">Available</span>
                         </div>
 
-                        <div class="bg-primary infoBoxData rounded text-left pl-2 pt-1">
+                        <div class="spanBoxInfo infoBoxData rounded text-left pl-2 pt-1">
                             <span>Doing:</span>
                         </div>
 
-                        <div class="bg-primary infoBoxData rounded text-left pl-2 pt-1">
+                        <div class="spanBoxInfo infoBoxData rounded text-left pl-2 pt-1">
                             <span>Next: </span>
                         </div>
                     </div>
 
                     <div class="border boxInfo rounded p-2 pt-3">
                         <p class="mb-2 titleInfoData">Orders</p>
-                        <div class="bg-primary infoBoxData rounded text-left pl-2 pt-1">
+                        <div class="hoverButton infoBoxData rounded text-left pl-2 pt-1">
                             <span>Choose mission</span>
                         </div>
 
-                        <div class="bg-primary infoBoxData rounded text-left pl-2 pt-1">
+                        <div class="hoverButton infoBoxData rounded text-left pl-2 pt-1">
                             <span>Choose task</span>
                         </div>
 
-                        <div class="bg-primary infoBoxData rounded text-left pl-2 pt-1">
+                        <div class="hoverButton infoBoxData rounded text-left pl-2 pt-1">
                             <span>Cancel</span>
                         </div>
                     </div>
 
                     <div class="border boxInfo rounded p-2 pt-3 last">
                         <p class="mb-2 titleInfoData">Last missions</p>
-                        <div class="bg-primary infoBoxData rounded text-left pl-2 pt-1">
+                        <div class="spanBoxInfo infoBoxData rounded text-left pl-2 pt-1">
                             <span>Repartir</span>
                         </div>
 
-                        <div class="bg-primary infoBoxData rounded text-left pl-2 pt-1">
+                        <div class="spanBoxInfo infoBoxData rounded text-left pl-2 pt-1">
                             <span>Buscar</span>
                         </div>
 
-                        <div class="bg-primary infoBoxData rounded text-left pl-2 pt-1">
+                        <div class="spanBoxInfo infoBoxData rounded text-left pl-2 pt-1">
                             <span>Llevar a Leo</span>
                         </div>
                     </div>
@@ -101,7 +101,29 @@
                 </div>
 
 
+                <div id="mission" class="primaryContent" >
 
+                    <div class="border boxInfo rounded p-2 pt-3">
+                        <p class="mb-4 titleInfoData">Missions</p>
+                        <div class="hoverButton infoBoxData rounded text-center pt-1">
+                            <span>Add</span>
+                        </div>
+
+                        <div class="hoverButton infoBoxData rounded text-center pl-2 pt-1 ">
+                            <span>Administrate</span>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div id="mapBox2">
+                        <div id="map2">
+
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -111,17 +133,20 @@
 
 
     <script>
-
+        var title = document.getElementById('actualStatus');
+            title.innerHTML = 'Disconected';
         var ros = new ROSLIB.Ros({
         url : 'ws://localhost:9090'
         });
 
         ros.on('connection', function() {
+            title.innerHTML = 'Available';
             console.log('Connected to websocket server.');
             document.getElementById('btnTini').style.backgroundColor = 'blue';
         });
 
         ros.on('error', function(error) {
+            title.innerHTML = 'Disconected';
             console.log('Error connecting to websocket server: ', error);
             document.getElementById('btnTini').style.backgroundColor = '#ed5353';
         });
@@ -139,10 +164,11 @@
         height : mapBox.offsetHeight ,
 
         });
-        let gridClient = new ROS2D.OccupancyGridClient({
+        let gridClient = new NAV2D.OccupancyGridClientNav({
             ros : ros,
             rootObject : viewer.scene,
-
+            viewer: viewer,
+            serverName: '/move_base'
         });
         // Scale the canvas to fit to the map
         gridClient.on('change', function(){
@@ -239,10 +265,49 @@
 
 
 
+        // ------------------------------------------------------------------------------- //
+
+        var mapBox2 = document.getElementById('mapBox2');
+        var newWidth2 = ((mapBox2.offsetHeight * 160) / 288);
+        var res = mapBox2.offsetWidth - newWidth2;
+
+        document.getElementById('map2').style.marginLeft = res/2 + 'px';
+
+
+        var viewer2 = new ROS2D.Viewer({
+        divID : 'map2',
+        width : newWidth2,
+        height : mapBox2.offsetHeight ,
+
+        });
+        let gridClient2 = new NAV2D.OccupancyGridClientNav({
+            ros : ros,
+            rootObject : viewer2.scene,
+            viewer: viewer2,
+            serverName: '/move_base'
+        });
+        // Scale the canvas to fit to the map
+        gridClient2.on('change', function(){
+            viewer2.scaleToDimensions(gridClient2.currentGrid.width, gridClient2.currentGrid.height);
+            viewer2.shift(gridClient2.currentGrid.pose.position.x, gridClient2.currentGrid.pose.position.y);
+        });
+        var ip = ['localhost']
+        var robotMarkers = [];
+        var topics = [];
+
+
+
+        for(let i = 0; i < robotMarkers.length; i++){
+                gridClient2.rootObject.addChild(robotMarkers[i]);
+            }
+
+
+
+
     </script>
 
     <script>
-        function activeBtn(btn){
+        function activeBtn(btn, content){
                 var btns = document.querySelectorAll('.btnMenu');
                 btns.forEach(btn => {
                     btn.style.background = '#F8F9FA';
@@ -250,6 +315,13 @@
                 });
                 document.getElementById(btn).style.background = 'linear-gradient(to right, #8111f9, #58abef)';
                 document.getElementById(btn).style.color = 'white';
+
+                var primaryContents = document.querySelectorAll('.primaryContent');
+
+                primaryContents.forEach(content => {
+                    content.style.display = 'none';
+                });
+                document.getElementById(content).style.display = 'block';
             }
     </script>
 
