@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="spanBoxInfo infoBoxData rounded text-left pl-2 pt-1">
-                            <span>Doing:</span>
+                            <span id="actualDoingSpan">Doing:</span>
                         </div>
 
                         <div class="spanBoxInfo infoBoxData rounded text-left pl-2 pt-1">
@@ -335,9 +335,10 @@
 
     <script>
         var title = document.getElementById('actualStatus');
+        var actualDoingSpan = document.getElementById('actualDoingSpan');
             title.innerHTML = 'Disconected';
         var ros = new ROSLIB.Ros({
-            url : 'ws://localhost:9090'
+            url : 'ws://186.108.202.172:9090'
         });
 
         ros.on('connection', function() {
@@ -398,7 +399,7 @@
 
         // Scale the canvas to fit to the map
 
-        var ip = ['localhost', 'localhost'];
+        var ip = ['186.108.202.172', '186.108.202.172'];
         var robotMarkers = [];
         var topics = [];
 
@@ -443,34 +444,29 @@
 
 
                 // Monitoring /move_base/result
-        var move_baseListener = new ROSLIB.Topic({
-            ros : ros,
-            name : '/move_base/result',
-            messageType : 'move_base_msgs/MoveBaseActionResult'
-        });
-
-        var title = document.getElementById('actualStatus');
-            console.log(title.innerHTML);
-        move_baseListener.subscribe(function(actionResult) {
-            console.log('Received message on ' + move_baseListener.name + 'status: 1');
 
 
-            title.innerHTML = 'Available';
-
-            // actionResult.status.status == 2 (goal cancelled)
-            // actionResult.status.status == 3 (goal reached)
-        //    move_baseListener.unsubscribe();
-        });
-
-        var move_baseListenerFeed = new ROSLIB.Topic({
+        var task_manager_feedback = new ROSLIB.Topic({
             ros : ros,
             name : '/task_manager/feedback',
             messageType : 'simulation_msgs/TaskManagerActionFeedback'
         });
 
-        move_baseListenerFeed.subscribe(function(actionResult) {
-            console.log('feedback' + actionResult);
+        task_manager_feedback.subscribe(function(feedback) {
+            console.log('feedback' + feedback.feedback.goal_name);
+            actualDoingSpan.innerHTML = 'Doing: ' + feedback.feedback.goal_name;
             title.innerHTML = 'Ocupied';
+        });
+
+        var task_manager_result = new ROSLIB.Topic({
+            ros : ros,
+            name : '/task_manager/result',
+            messageType : 'simulation_msgs/TaskManagerActionResult'
+        });
+
+        task_manager_result.subscribe(function(feedback) {
+            actualDoingSpan.innerHTML = 'Doing: None';
+            title.innerHTML = 'Available';
         });
 
 
