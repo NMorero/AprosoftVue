@@ -49,12 +49,12 @@ body {
 }
 
 .btnMenu{
-    background-color: #F8F9FA;
-    -webkit-transition: background-color 200ms linear;
-    -moz-transition: background-color 200ms linear;
-    -o-transition: background-color 200ms linear;
-    -ms-transition: background-color 200ms linear;
-    transition: background-color 200ms linear;
+    color: black;
+    background-image: #F8F9FA;
+
+    /* TRANSITION */
+    -webkit-transition: all 700ms ease-out;
+    transition: all 700ms ease-out;
 }
 button:focus {outline:0;}
 
@@ -141,11 +141,15 @@ button:focus {outline:0;}
     opacity: 0;
   }
 
+
+
+
 #mapBox{
     margin-top: 1%;
     width: 60%;
     height: 60%;
     margin-left: 20%;
+
 }
 
 #mapBox2{

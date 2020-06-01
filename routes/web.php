@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/getTasks', function () {
+    $jsonTaskFile = file_get_contents("json/tasks.json");
+    $taskData = json_decode($jsonTaskFile, true);
+    return $taskData;
+});

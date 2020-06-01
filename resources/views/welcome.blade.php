@@ -19,6 +19,7 @@
 </head>
 <body>
     <div>
+
         <div class="d-flex" id="wrapper">
 
             <!-- Sidebar -->
@@ -88,25 +89,9 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             </div>
-                            <div class="modal-body row justify-content-around m-0 p-3">
-                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 1</span>
-                                </button>
-                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 2</span>
-                                </button>
-                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 3</span>
-                                </button>
-                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 4</span>
-                                </button>
-                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 5</span>
-                                </button>
-                                <button class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 6</span>
-                                </button>
+                            <div id="bodyModalTasksDashboard" class="modal-body row justify-content-around m-0 p-3">
+
+
                             </div>
                             <div class="modal-footer bgDegraded">
                             <button type="button" class="btn bg-none text-white" data-dismiss="modal">Cancel</button>
@@ -211,25 +196,11 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             </div>
-                            <div class="modal-body row justify-content-around m-0 p-3">
+                            <div id="bodyModalTasksMission" class="modal-body row justify-content-around m-0 p-3">
                                 <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
                                     <span>Ir a posicion 1</span>
                                 </div>
-                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 2</span>
-                                </div>
-                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 3</span>
-                                </div>
-                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 4</span>
-                                </div>
-                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 5</span>
-                                </div>
-                                <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
-                                    <span>Ir a posicion 6</span>
-                                </div>
+
                             </div>
                             <div class="modal-footer bgDegraded">
                             <button type="button" class="btn bg-none text-white" data-dismiss="modal">Close</button>
@@ -372,7 +343,7 @@
         ros.on('connection', function() {
             title.innerHTML = 'Available';
             console.log('Connected to websocket server.');
-            document.getElementById('btnTini').style.backgroundColor = '#04e53c';
+            document.getElementById('btnTini').style.backgroundColor = '#11dbca';
         });
 
         ros.on('error', function(error) {
@@ -382,7 +353,7 @@
         });
 
         var mapBox = document.getElementById('mapBox');
-        var newWidth = ((mapBox.offsetHeight * 160) / 288);
+        var newWidth = ((mapBox.offsetHeight * 220) / 288);
         var res = mapBox.offsetWidth - newWidth;
 
         document.getElementById('map').style.marginLeft = res/2 + 'px';
@@ -493,28 +464,16 @@
 
         var move_baseListenerFeed = new ROSLIB.Topic({
             ros : ros,
-            name : '/move_base/feedback',
-            messageType : 'move_base_msgs/MoveBaseActionFeedback'
+            name : '/task_manager/feedback',
+            messageType : 'simulation_msgs/TaskManagerActionFeedback'
         });
 
         move_baseListenerFeed.subscribe(function(actionResult) {
-            console.log('Received message on feedbacfk ' + actionResult);
+            console.log('feedback' + actionResult);
             title.innerHTML = 'Ocupied';
         });
 
 
-        var move_baseListenerStatus = new ROSLIB.Topic({
-            ros : ros,
-            name : '/move_base/feedback',
-            messageType : 'move_base_msgs/MoveBaseActionFeedback'
-        });
-
-        move_baseListenerStatus.subscribe(function(actionResult) {
-            console.log('Received message on feedbacfk ' + actionResult);
-
-        });
-        document.getElementById('btnMenu1').style.background = 'linear-gradient(to right, #8111f9, #58abef)';
-        document.getElementById('btnMenu1').style.color = '#ffffff';
 
         var amcl_poseEcho = new ROSLIB.Topic({
             ros : ros,
@@ -529,54 +488,17 @@
             amcl_poseEcho.unsubscribe();
             });
         }
+        getActualPose();
         var add = document.getElementById('addTask');
         add.addEventListener("click", getActualPose);
 
-        var chooseTask = document.getElementById('chooseTask');
-        chooseTask.addEventListener("click", sendGoal);
-
-        function sendGoal(){
-            var actionClient = new ROSLIB.ActionClient({
-                ros : ros,
-                serverName : '/move_base',
-                actionName : 'move_base_msgs/MoveBaseAction'
-            });
-
-
-            var positionVec3 = new ROSLIB.Vector3(null);
-            var orientation = new ROSLIB.Quaternion({x:0, y:0, z:0, w:1.0});
-
-            positionVec3.x = 7.662799231901053;
-            positionVec3.y = -1.38045495628809;
-
-            var pose = new ROSLIB.Pose({
-                position : positionVec3,
-                orientation : orientation
-            });
-
-            var goal = new ROSLIB.Goal({
-                actionClient : actionClient,
-                goalMessage : {
-
-                    target_pose : {
-                    header : {
-                        frame_id : 'map'
-                    },
-                    pose : pose
-                    }
-                }
-                });
-            goal.send();
-
-        }
-
-
+        //var senGoal = document.getElementById('sendGoal');
+        //senGoal.addEventListener("click", sendGoal);
         cmd_vel_listener = new ROSLIB.Topic({
             ros : ros,
             name : "/cmd_vel",
             messageType : 'geometry_msgs/Twist'
         });
-
         move = function (linear, angular) {
             var twist = new ROSLIB.Message({
             linear: {
@@ -593,9 +515,76 @@
             cmd_vel_listener.publish(twist);
         }
 
-    </script>
 
+        function sendGoalPosition(goal_name, x, y){
+            var taskManager = new ROSLIB.ActionClient({
+                ros : ros,
+                serverName : '/task_manager',
+                actionName : 'simulation_msgs/TaskManagerAction'
+            });
+            var positionVec3 = new ROSLIB.Vector3(null);
+            var orientation = new ROSLIB.Quaternion({x:0, y:0, z:0, w:1.0});
+
+            positionVec3.x = x;
+            positionVec3.y = y;
+
+            var pose = new ROSLIB.Pose({
+                position : positionVec3,
+                orientation : orientation
+            });
+            /*var goalEx = new ROSLIB.Goal({
+                actionClient : actionClient,
+                goalMessage : {
+                    target_pose : {
+                    header : {
+                        frame_id : 'map'
+                    },
+                    pose : pose
+                    }
+                }
+                });
+                */
+            var goal = new ROSLIB.Goal({
+                actionClient : taskManager,
+                goalMessage : {
+                    type : 2,
+                    goal_name: goal_name,
+                    x: pose.position.x,
+                    y: pose.position.y,
+                    z: pose.orientation.z,
+                    w: pose.orientation.w,
+                    }
+                });
+            goal.send();
+        }
+
+        function sendGoalTime(goal_name, wait_time){
+            var taskManager = new ROSLIB.ActionClient({
+                ros : ros,
+                serverName : '/task_manager',
+                actionName : 'simulation_msgs/TaskManagerAction'
+            });
+            var goal = new ROSLIB.Goal({
+                actionClient : taskManager,
+                goalMessage : {
+                    type : 1,
+                    goal_name: goal_name,
+                    wait_time: wait_time
+                    }
+                });
+            goal.send();
+        }
+
+
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+
+        document.getElementById('btnMenu1').style.backgroundColor = '#681be5';
+        document.getElementById('btnMenu1').style.color = '#ffffff';
+
 
         function activeBtn(btn, content){
                 var btns = document.querySelectorAll('.btnMenu');
@@ -603,7 +592,7 @@
                     btn.style.background = '#F8F9FA';
                     btn.style.color = '#000000';
                 });
-                document.getElementById(btn).style.background = 'linear-gradient(to right, #8111f9, #58abef)';
+                document.getElementById(btn).style.backgroundColor = '#681be5';
                 document.getElementById(btn).style.color = 'white';
 
                 var primaryContents = document.querySelectorAll('.primaryContent');
@@ -614,6 +603,61 @@
                 document.getElementById(content).style.display = 'block';
             }
 
+
+            /* axios.post('/user', {
+                firstName: 'Fred',
+                lastName: 'Flintstone'
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+            */
+
+            var divTasksDashboard = document.getElementById('bodyModalTasksDashboard');
+            var divTasksMission = document.getElementById('bodyModalTasksMission')
+
+            axios.get('/getTasks')
+            .then(function (response) {
+                // handle success
+                console.log(response.data);
+                response.data.forEach(task => {
+                    if(task.type == 1){
+                        var templateDashboard = `
+                        <button onclick="sendGoalTime('${task.goal_name}', ${task.wait_time})" class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                            <span>${task.goal_name}</span>
+                        </button>
+                    `;
+                    }else{
+                        var templateDashboard = `
+                        <button onclick="sendGoalPosition('${task.goal_name}', ${task.x}, ${task.y})" class="boxInfoModal text-black col-3 mx-1 p-1 text-center border rounded my-2">
+                            <span>${task.goal_name}</span>
+                        </button>
+                    `;
+                    }
+
+
+
+                    var templateMission = `
+                        <div class="boxInfoModal col-3 mx-1 p-1 text-center border rounded my-2">
+                            <span>${task.goal_name}</span>
+                        </div>
+                    `
+
+                    divTasksDashboard.innerHTML = divTasksDashboard.innerHTML.concat(templateDashboard);
+                    divTasksMission.innerHTML = divTasksMission.innerHTML.concat(templateMission);
+                });
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
 
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
