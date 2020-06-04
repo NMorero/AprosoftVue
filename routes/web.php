@@ -20,3 +20,5 @@ Route::get('/getTasks', function () {
     $taskData = json_decode($jsonTaskFile, true);
     return $taskData;
 });
+
+Route::get('/saveLog', 'HomeController@saveLog');

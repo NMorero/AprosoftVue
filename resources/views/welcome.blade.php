@@ -14,11 +14,13 @@
     <script src="js/roslibjs.js"></script>
     <script src="js/ros2djs.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Aprosoft</title>
 </head>
 <body>
-    <div>
+    <div class="d-none d-lg-block d-md-block">
 
         <div class="d-flex" id="wrapper">
 
@@ -338,7 +340,7 @@
         var actualDoingSpan = document.getElementById('actualDoingSpan');
             title.innerHTML = 'Disconected';
         var ros = new ROSLIB.Ros({
-            url : 'ws://186.108.202.172:9090'
+            url : 'ws://localhost:9090'
         });
 
         ros.on('connection', function() {
@@ -399,7 +401,7 @@
 
         // Scale the canvas to fit to the map
 
-        var ip = ['186.108.202.172', '186.108.202.172'];
+        var ip = ['localhost', 'localhost'];
         var robotMarkers = [];
         var topics = [];
 
@@ -656,8 +658,14 @@
             });
 
     </script>
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+
 </body>
 </html>
