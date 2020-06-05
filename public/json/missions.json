@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": "Mision 1",
+        "tasks":
+       [
+            {
+                "id": 2,
+                "type": 2,
+                "goal_name": "Ir a posicion 2",
+                "x": 3.0916501128804637,
+                "y": 0.5742970650171499
+            },
+            {
+                "id": 5,
+                "type": 1,
+                "goal_name": "Esperar 5 segundos",
+                "wait_time": 5
+            },
+            {
+                "id": 1,
+                "type": 2,
+                "goal_name": "Ir a posicion 1",
+                "x": 7.662799231901053,
+                "y": -1.38045495628809
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Mision 2",
+        "tasks":
+       [
+            {
+                "id": 1,
+                "type": 2,
+                "goal_name": "Ir a posicion 1",
+                "x": 7.662799231901053,
+                "y": -1.38045495628809
+            },
+            {
+                "id": 5,
+                "type": 1,
+                "goal_name": "Esperar 5 segundos",
+                "wait_time": 5
+            },
+
+            {
+                "id": 2,
+                "type": 2,
+                "goal_name": "Ir a posicion 2",
+                "x": 3.0916501128804637,
+                "y": 0.5742970650171499
+            }
+        ]
+    }
+
+]

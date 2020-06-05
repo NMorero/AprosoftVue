@@ -12,13 +12,15 @@
 */
 
 Route::get('/', function () {
+    return view('nodeManager');
+});
+
+Route::get('/home', function () {
     return view('welcome');
 });
 
-Route::get('/getTasks', function () {
-    $jsonTaskFile = file_get_contents("json/tasks.json");
-    $taskData = json_decode($jsonTaskFile, true);
-    return $taskData;
-});
+Route::get('/getTasks', 'HomeController@getTasks');
+
+Route::get('/getMissions', 'HomeController@getMissions');
 
 Route::get('/saveLog', 'HomeController@saveLog');

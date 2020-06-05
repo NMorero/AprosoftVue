@@ -1,0 +1,41 @@
+body, html {
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ededed !important;
+    font-family: 'Open Sans', sans-serif !important;
+}
+*{
+    background-color: #ededed !important;
+    font-family: 'Open Sans', sans-serif !important;
+}
+h3{
+    display: flex;
+    margin:0 auto;
+    align-items:center;
+    color: #43db9c;
+    font-size: 20rem !important;
+    cursor: pointer;
+}
+
+#imgLoader{
+    display: none;
+}
+
+#map{
+    display: inline-block;
+    margin-left: 45%;
+}
+
+.bgDegraded{
+    background: linear-gradient(to right, #58abef , #8111f9);
+    color: white;
+}
+#saveBtn{
+    border: 1px solid white;
+}
