@@ -34,11 +34,12 @@
 
             */
 
-        var divTasksDashboard = document.getElementById('bodyModalTasksDashboard');
-        var divTasksMission = document.getElementById('bodyModalTasksMission')
+
         axios.get('/getTasks')
         .then(function (response) {
             // handle success
+            var divTasksDashboard = document.getElementById('bodyModalTasksDashboard');
+            var divTasksMission = document.getElementById('bodyModalTasksMission')
             console.log(response.data);
             response.data.forEach(task => {
                 if(task.type == 1){
@@ -84,6 +85,7 @@
 
         axios.get('/getMissions')
         .then(function (response) {
+
             // handle success
             console.log(response.data);
             var missions = response.data;
@@ -111,9 +113,3 @@
         .then(function () {
             // always executed
         });
-
-
-
-
-
-
