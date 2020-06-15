@@ -4,9 +4,8 @@ body, html {
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
-    display: flex;
-    align-items: center;
     justify-content: center;
+
     background-color: #ededed !important;
     font-family: 'Open Sans', sans-serif !important;
 }
@@ -14,22 +13,126 @@ body, html {
     background-color: #ededed !important;
     font-family: 'Open Sans', sans-serif !important;
 }
-h3{
-    display: flex;
+.blinking {
+    animation: blinker 2s linear infinite;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+
+.bodyAlign{
+    align-items: center;
+}
+.middle{
+
     margin:0 auto;
     align-items:center;
-    color: #43db9c;
-    font-size: 20rem !important;
-    cursor: pointer;
+    color: #23abea;
+}
+#exploreEnd{
+    display: none;
+}
+#exploringEnded{
+    font-size: 4rem !important;
 }
 
+#start{
+    cursor: pointer;
+}
+.middle h3{
+    font-size: 6rem !important;
+    text-decoration: none;
+    cursor: default;
+}
+.middle span{
+    font-size: 2rem !important;
+}
+#exploration{
+    display: none;
+    margin-top: 40%;
+}
+#exploring{
+    display: none;
+}
+#exploration div{
+    margin-top: 10%;
+}
+.btnTurnOff{
+    background-color: orange !important;
+    border: 0px;
+    height: 12vh;
+    width: 23vw;
+    font-size: 2.5rem;
+    color: white;
+    position: absolute;
+    right: 6rem;
+    bottom: 8rem;
+}
+
+.btnStart{
+    color: white;
+    border: 0px;
+    height: 12vh;
+    width: 23vw;
+    position: absolute;
+    left: 6rem;
+    bottom: 8rem;
+    font-size: 2.5rem;
+}
+
+@media (min-width: 1300px) {
+    .btnTurnOff{
+        background-color: orange !important;
+        border: 0px;
+        height: 12vh;
+        width: 20vw;
+        font-size: 2.5rem;
+        color: white;
+        position: absolute;
+        right: 10rem;
+        bottom: 2rem;
+    }
+    .btnStart{
+        color: white;
+        border: 0px;
+        height: 12vh;
+        width: 20vw;
+        position: absolute;
+        left: 10rem;
+        bottom: 2rem;
+        font-size: 2.5rem;
+    }
+    .middle p{
+        font-size: 6rem !important;
+        font-weight: 600;
+        position: relative;
+        bottom: 8rem;
+    }
+}
+
+#status{
+    color: black;
+    position: relative;
+    bottom: 10rem;
+}
+.middle p{
+    font-size: 4rem;
+    font-weight: 600;
+    position: relative;
+    bottom: 8rem;
+}
 #imgLoader{
     display: none;
 }
 
 #map{
     display: inline-block;
-    margin-left: 45%;
+    margin-left: 1%;
+    margin-top: 4%;
 }
 
 .bgDegraded{

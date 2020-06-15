@@ -4,6 +4,13 @@ var ros = new ROSLIB.Ros({
 
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
+    setTimeout(function(){
+        document.getElementById('starting').style.display = 'none';
+    var element = document.getElementById("body");
+    element.classList.remove("bodyAlign")
+    document.getElementById('exploration').style.display = 'block';
+    }, 3000);
+
 });
 
 ros.on('error', function(error) {
@@ -66,8 +73,10 @@ startBtn.addEventListener('click', function(){
     });
     start.publish(twist);
 
-    startBtn.style.display = 'none';
-    document.getElementById('imgLoader').style.display = 'flex';
+    document.getElementById('exploration').style.display = 'none';
+    var element = document.getElementById("body");
+    element.classList.add("bodyAlign")
+    document.getElementById('exploring').style.display = 'block';
 });
 
 var explore_status = new ROSLIB.Topic({
@@ -77,7 +86,7 @@ var explore_status = new ROSLIB.Topic({
 });
 
 var flagExplo = 0;
-var btnModal = document.getElementById('btnModalOpen');
+
 explore_status.subscribe(function(explore) {
     flagExplo++;
     if(flagExplo == 2){
@@ -96,7 +105,10 @@ explore_status.subscribe(function(explore) {
                 viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
                 viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
             });
-        btnModal.click();
+            var element = document.getElementById("body");
+            element.classList.remove("bodyAlign")
+            document.getElementById('exploring').style.display = 'none';
+            document.getElementById('exploreEnd').style.display = 'block';
     }
 });
 
