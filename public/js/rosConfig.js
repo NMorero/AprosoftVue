@@ -1,18 +1,18 @@
 var title = document.getElementById('actualStatus');
 var actualDoingSpan = document.getElementById('actualDoingSpan');
-    title.innerHTML = 'Disconected';
+    title.innerHTML = 'Desconectado';
 var ros = new ROSLIB.Ros({
-    url : 'ws://192.168.1.84:9090'
+    url : 'ws://localhost:9090'
 });
 
 ros.on('connection', function() {
-    title.innerHTML = 'Available';
+    title.innerHTML = 'Disponible';
     console.log('Connected to websocket server.');
     document.getElementById('btnTini').style.backgroundColor = '#11dbca';
 });
 
 ros.on('error', function(error) {
-    title.innerHTML = 'Disconected';
+    title.innerHTML = 'Desconectado';
     console.log('Error connecting to websocket server: ', error);
     document.getElementById('btnTini').style.backgroundColor = '#ed5353';
 });
@@ -53,7 +53,7 @@ let gridClient2 = new NAV2D.OccupancyGridClientNav({
     serverName: '/move_base'
 });
 
-var ip = ['192.168.1.84', '192.168.1.84'];
+var ip = ['localhost', 'localhost'];
 var robotMarkers = [];
 var topics = [];
 var createFunc = function (handlerToCall, discriminator, robotMarker) {
