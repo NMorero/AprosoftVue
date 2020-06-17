@@ -52,6 +52,15 @@
         </div>
     </div>
 
+    <div class="middle text-center" id="saving">
+        <h3 class="blinking">GUARDANDO</h3>
+        <span>POR FAVOR ESPERE</span>
+    </div>
+
+    <div class="middle text-center" id="booting">
+        <h3 class="blinking">REINICIANDO</h3>
+        <span>POR FAVOR ESPERE</span>
+    </div>
 
 
     <script src="{{asset('js/testNode.js')}}"></script>

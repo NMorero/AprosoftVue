@@ -1,5 +1,5 @@
 var ros = new ROSLIB.Ros({
-    url : 'ws://localhost:9090'
+    url : 'ws://192.168.1.84:9090'
 });
 
 ros.on('connection', function() {
@@ -130,6 +130,10 @@ btnRedo.addEventListener('click', function(){
         data: 2
     });
     mapStatus.publish(twist3);
+    var element = document.getElementById("body");
+        element.classList.add("bodyAlign")
+        document.getElementById('exploreEnd').style.display = 'none';
+        document.getElementById('booting').style.display = 'block';
     setTimeout(function(){
         window.location.href = '/';
     }, 12000);
@@ -142,9 +146,10 @@ btnDone.addEventListener('click', function(){
         data: 1
     });
     mapStatus.publish(twist3);
-
-    var contentM = document.getElementById('contentModal');
-    contentM.innerHTML = `<h5 class="text-dark text-center" style="text-decoartion: blink;" >Waiting for server</h5>`;
+    var element = document.getElementById("body");
+        element.classList.add("bodyAlign")
+        document.getElementById('exploreEnd').style.display = 'none';
+        document.getElementById('saving').style.display = 'block';
     setTimeout(function(){
         window.location.href = '/home';
     }, 15000);
