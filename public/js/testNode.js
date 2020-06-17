@@ -1,5 +1,5 @@
 var ros = new ROSLIB.Ros({
-    url : 'ws://localhost:9090'
+    url : 'ws://192.168.0.200:9090'
 });
 
 ros.on('connection', function() {
@@ -143,8 +143,7 @@ btnDone.addEventListener('click', function(){
     });
     mapStatus.publish(twist3);
 
-    var contentM = document.getElementById('contentModal');
-    contentM.innerHTML = `<h5 class="text-dark text-center" style="text-decoartion: blink;" >Waiting for server</h5>`;
+    
     setTimeout(function(){
         window.location.href = '/home';
     }, 15000);

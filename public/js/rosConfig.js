@@ -2,7 +2,7 @@ var title = document.getElementById('actualStatus');
 var actualDoingSpan = document.getElementById('actualDoingSpan');
     title.innerHTML = 'Desconectado';
 var ros = new ROSLIB.Ros({
-    url : 'ws://localhost:9090'
+    url : 'ws://192.168.0.200:9090'
 });
 
 ros.on('connection', function() {
@@ -53,7 +53,7 @@ let gridClient2 = new NAV2D.OccupancyGridClientNav({
     serverName: '/move_base'
 });
 
-var ip = ['localhost', 'localhost'];
+var ip = ['192.168.0.200', '192.168.0.200'];
 var robotMarkers = [];
 var topics = [];
 var createFunc = function (handlerToCall, discriminator, robotMarker) {
