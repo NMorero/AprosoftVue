@@ -8,8 +8,8 @@
           <div class="sidebar-heading">Aprosoft</div>
           <div class="list-group list-group-flush">
             <button class="list-group-item btnMenu" id="btnMenu1" onclick="activeBtn('btnMenu1', 'dashboard'); ">Tablero</button>
-            <button class="list-group-item btnMenu" id="btnMenu2" onclick="activeBtn('btnMenu2', 'mission'); ">Control de mision</button>
-            <button class="list-group-item btnMenu" id="btnMenu3" onclick="activeBtn('btnMenu3', 'status'); " disabled>Etado</button>
+            <button class="list-group-item btnMenu" id="btnMenu2" onclick="activeBtn('btnMenu2', 'mission'); ">Control de misión</button>
+            <button class="list-group-item btnMenu" id="btnMenu3" onclick="activeBtn('btnMenu3', 'status'); " disabled>Estado</button>
           </div>
         </div>
         <!-- /#sidebar-wrapper -->
