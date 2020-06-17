@@ -147,7 +147,7 @@ body, html {
     border: 1px solid white;
 }
 
-@media (max-width: 400px){
+@media (max-width: 420px){
     .middle h3{
         font-size: 3rem !important;
         text-decoration: none;
