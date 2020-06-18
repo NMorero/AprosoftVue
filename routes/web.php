@@ -19,6 +19,10 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('testing');
+});
+
 Route::get('/getTasks', 'HomeController@getTasks');
 
 Route::get('/getMissions', 'HomeController@getMissions');
