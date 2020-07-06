@@ -168,11 +168,14 @@
           opacity: 1;
         }
       }
+      #status{
+        display: none;
+      }
       </style>
     <title>Aprosoft</title>
 </head>
 <body>
-    <span>Status: </span>
+    <span id="status">Status: </span>
     <div class="container">
 
         <svg version="1.1" id="hei-loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-16 5.5 115.3 141.5" style="enable-background:new -16 5.5 115.3 141.5;" xml:space="preserve">
@@ -262,12 +265,12 @@
             // $('#seven').toggleClass('sevenAnimation');
             if($('#bulb-body-fill').hasClass('bulb-body-fill')){
                 var goal = new ROSLIB.Message({
-                    data: true
+                    data: false
                 });
                 lamp_goal.publish(goal);
             }else{
                 var goal = new ROSLIB.Message({
-                    data: false
+                    data: true
                 });
                 lamp_goal.publish(goal);
             }
