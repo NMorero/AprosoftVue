@@ -246,6 +246,7 @@
               $('#five').addClass('fiveAnimation');
               $('#six').addClass('sixAnimation');
               $('#seven').addClass('sevenAnimation');
+              $('#status').innerHTML = "On";
           }else{
               $('#bulb-body-fill').removeClass('bulb-body-fill');
               $('#one').removeClass('oneAnimation');
@@ -255,6 +256,7 @@
               $('#five').removeClass('fiveAnimation');
               $('#six').removeClass('sixAnimation');
               $('#seven').removeClass('sevenAnimation');
+              $('#status').innerHTML = "Off";
           }
     });
 
