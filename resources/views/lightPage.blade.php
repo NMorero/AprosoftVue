@@ -229,25 +229,26 @@
         });
 
         lamp_status.subscribe(function(status) {
-        if(status == true && !$('#bulb-body-fill').hasClass('bulb-body-fill')){
-            $('#bulb-body-fill').addClass('bulb-body-fill');
-            $('#one').addClass('oneAnimation');
-            $('#two').addClass('twoAnimation');
-            $('#three').addClass('threeAnimation');
-            $('#four').addClass('fourAnimation');
-            $('#five').addClass('fiveAnimation');
-            $('#six').addClass('sixAnimation');
-            $('#seven').addClass('sevenAnimation');
-        }else{
-            $('#bulb-body-fill').addClass('bulb-body-fill');
-            $('#one').addClass('oneAnimation');
-            $('#two').addClass('twoAnimation');
-            $('#three').addClass('threeAnimation');
-            $('#four').addClass('fourAnimation');
-            $('#five').addClass('fiveAnimation');
-            $('#six').addClass('sixAnimation');
-            $('#seven').addClass('sevenAnimation');
-        }
+          console.log('Status:' + status);
+          if(status == true && !$('#bulb-body-fill').hasClass('bulb-body-fill')){
+              $('#bulb-body-fill').addClass('bulb-body-fill');
+              $('#one').addClass('oneAnimation');
+              $('#two').addClass('twoAnimation');
+              $('#three').addClass('threeAnimation');
+              $('#four').addClass('fourAnimation');
+              $('#five').addClass('fiveAnimation');
+              $('#six').addClass('sixAnimation');
+              $('#seven').addClass('sevenAnimation');
+          }else{
+              $('#bulb-body-fill').addClass('bulb-body-fill');
+              $('#one').addClass('oneAnimation');
+              $('#two').addClass('twoAnimation');
+              $('#three').addClass('threeAnimation');
+              $('#four').addClass('fourAnimation');
+              $('#five').addClass('fiveAnimation');
+              $('#six').addClass('sixAnimation');
+              $('#seven').addClass('sevenAnimation');
+          }
     });
 
         $('#bulb-body-fill').click(function(){
