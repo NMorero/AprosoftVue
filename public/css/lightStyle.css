@@ -65,7 +65,7 @@ body{
         top: 12px;
         left: 58px;
         position: absolute;
-        border-radius: 2px;
+        border-radius: 8px;
         background-color: #fff;
         width: 5px;
         height: 15px;
@@ -101,7 +101,7 @@ body{
         top: 12px;
         left: 62px;
         position: absolute;
-        border-radius: 2px;
+        border-radius: 8px;
         background-color: #fff;
         width: 5px;
         height: 15px;
@@ -134,7 +134,7 @@ body{
 
   .batteryOuter {
     position: absolute;
-    border-radius: 10px;
+    border-radius: 2px;
     border: 2px solid #fff;
     top: 50px;
     left: 120px;
