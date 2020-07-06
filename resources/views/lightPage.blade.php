@@ -169,7 +169,9 @@
         }
       }
       #status{
-        display: none;
+        position: relative;
+        top: 10px;
+        left: 50%;
       }
       </style>
     <title>Aprosoft</title>
@@ -233,7 +235,7 @@
 
         lamp_status.subscribe(function(status) {
           console.log('Status:' + status);
-          if(status == true && !$('#bulb-body-fill').hasClass('bulb-body-fill')){
+          if(status == true){
               $('#bulb-body-fill').addClass('bulb-body-fill');
               $('#one').addClass('oneAnimation');
               $('#two').addClass('twoAnimation');
@@ -243,14 +245,14 @@
               $('#six').addClass('sixAnimation');
               $('#seven').addClass('sevenAnimation');
           }else{
-              $('#bulb-body-fill').addClass('bulb-body-fill');
-              $('#one').addClass('oneAnimation');
-              $('#two').addClass('twoAnimation');
-              $('#three').addClass('threeAnimation');
-              $('#four').addClass('fourAnimation');
-              $('#five').addClass('fiveAnimation');
-              $('#six').addClass('sixAnimation');
-              $('#seven').addClass('sevenAnimation');
+              $('#bulb-body-fill').removeClass('bulb-body-fill');
+              $('#one').removeClass('oneAnimation');
+              $('#two').removeClass('twoAnimation');
+              $('#three').removeClass('threeAnimation');
+              $('#four').removeClass('fourAnimation');
+              $('#five').removeClass('fiveAnimation');
+              $('#six').removeClass('sixAnimation');
+              $('#seven').removeClass('sevenAnimation');
           }
     });
 
