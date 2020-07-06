@@ -179,7 +179,7 @@
     <title>Aprosoft</title>
 </head>
 <body>
-    <p id="status" >Status: On</p>
+    <p id="status" >Status: Off</p>
     <div class="container">
 
         <svg version="1.1" id="hei-loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-16 5.5 115.3 141.5" style="enable-background:new -16 5.5 115.3 141.5;" xml:space="preserve">
@@ -246,7 +246,7 @@
               $('#five').addClass('fiveAnimation');
               $('#six').addClass('sixAnimation');
               $('#seven').addClass('sevenAnimation');
-              $('#status').innerHTML = "On";
+              $('#status').html("On");
           }else{
               $('#bulb-body-fill').removeClass('bulb-body-fill');
               $('#one').removeClass('oneAnimation');
@@ -256,7 +256,7 @@
               $('#five').removeClass('fiveAnimation');
               $('#six').removeClass('sixAnimation');
               $('#seven').removeClass('sevenAnimation');
-              $('#status').innerHTML = "Off";
+              $('#status').html("Off");
           }
     });
 
