@@ -169,15 +169,17 @@
         }
       }
       #status{
-        position: relative;
+        position: absolute;
+        width: 100vw;
+        text-align: center;
         top: 10px;
-        left: 50%;
+
       }
       </style>
     <title>Aprosoft</title>
 </head>
 <body>
-    <span id="status">Status: </span>
+    <p id="status" >Status: On</p>
     <div class="container">
 
         <svg version="1.1" id="hei-loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-16 5.5 115.3 141.5" style="enable-background:new -16 5.5 115.3 141.5;" xml:space="preserve">
