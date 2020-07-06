@@ -237,7 +237,7 @@
 
         lamp_status.subscribe(function(status) {
           console.log('Status:' + status);
-          if(status.data == true){
+          if(status.data == false){
               $('#bulb-body-fill').addClass('bulb-body-fill');
               $('#one').addClass('oneAnimation');
               $('#two').addClass('twoAnimation');
