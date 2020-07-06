@@ -12,176 +12,19 @@
     <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
     <script src="js/roslibjs.js"></script>
     <script src="js/ros2djs.js"></script>
+    <link rel="stylesheet" href="css/lightStyle.css">
 
-    <style>
-    *{
-      font-family: 'Montserrat', sans-serif;
-    }
-    body {
-        padding-top: 25vh;
-        background-color: rgba(156, 210, 210, .8);
-      }
-
-      svg {
-        width: 100%;
-      }
-
-      .container {
-        width: 200px;
-        margin: 3em auto;
-      }
-
-      .st0 {
-        fill: #FFFFFF;
-      }
-
-      .st1 {
-        fill: none;
-        stroke: #FFFFFF;
-        stroke-width: 4;
-        stroke-miterlimit: 10;
-      }
-
-      .st2 {
-        fill: none;
-        opacity: .5;
-        stroke: #FFFFFF;
-        stroke-width: 2;
-        stroke-miterlimit: 10;
-      }
-
-      #one {
-        -webkit-transform-origin: center;
-        -ms-transform-origin: center;
-        transform-origin: center;
-      }
-
-      .oneAnimation{
-        -webkit-animation: line-glow 1s .1s infinite;
-        animation: line-glow 1s .1s infinite;
-      }
-
-      #two {
-        -webkit-transform-origin: center;
-        -ms-transform-origin: center;
-        transform-origin: center;
-      }
-
-      .twoAnimation{
-        -webkit-animation: line-glow 1s .2s infinite;
-        animation: line-glow 1s .2s infinite;
-      }
-
-      #three {
-        -webkit-transform-origin: center;
-        -ms-transform-origin: center;
-        transform-origin: center;
-      }
-
-      .threeAnimation{
-        -webkit-animation: line-glow 1s .3s infinite;
-        animation: line-glow 1s .3s infinite;
-      }
-
-      #four {
-        -webkit-transform-origin: center;
-        -ms-transform-origin: center;
-        transform-origin: center;
-      }
-
-      .fourAnimation{
-        -webkit-animation: line-glow 1s .4s infinite;
-        animation: line-glow 1s .4s infinite;
-      }
-
-      #five {
-        -webkit-transform-origin: center;
-        -ms-transform-origin: center;
-        transform-origin: center;
-      }
-
-      .fiveAnimation{
-        -webkit-animation: line-glow 1s .5s infinite;
-        animation: line-glow 1s .5s infinite;
-      }
-
-      #six {
-        -webkit-transform-origin: center;
-        -ms-transform-origin: center;
-        transform-origin: center;
-      }
-
-      .sixAnimation{
-        -webkit-animation: line-glow 1s .6s infinite;
-        animation: line-glow 1s .6s infinite;
-      }
-
-      #seven {
-        -webkit-transform-origin: center;
-        -ms-transform-origin: center;
-        transform-origin: center;
-      }
-
-      .sevenAnimation{
-        -webkit-animation: line-glow 1s .7s infinite;
-        animation: line-glow 1s .7s infinite;
-      }
-
-      #bulb-body-fill{
-          cursor: pointer;
-          opacity: 0;
-      }
-
-      .bulb-body-fill {
-        -webkit-animation: bulb-on 1s ease infinite;
-        animation: bulb-on 1s ease infinite;
-      }
-
-      @-webkit-keyframes line-glow {
-        10% {
-          -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-          opacity: 1;
-        }
-      }
-
-      @keyframes line-glow {
-        10% {
-          -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-          opacity: 1;
-        }
-      }
-
-      @-webkit-keyframes bulb-on {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-
-      @keyframes bulb-on {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-      #status{
-        position: absolute;
-        width: 100vw;
-        text-align: center;
-        top: 10px;
-
-      }
-      </style>
     <title>Aprosoft</title>
 </head>
 <body>
-    <p id="status" >Status: Off</p>
+    <div class="batteryContainer">
+        <div class="batteryOuter"><div id="batteryLevel"></div></div>
+        <div class="batteryBump"></div>
+      </div>
+    <div id="boxInfo">
+
+        <span id="status" >Off</span>
+    </div>
     <div class="container">
 
         <svg version="1.1" id="hei-loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-16 5.5 115.3 141.5" style="enable-background:new -16 5.5 115.3 141.5;" xml:space="preserve">
@@ -238,7 +81,6 @@
         });
 
         lamp_status.subscribe(function(status) {
-          console.log('Status:' + status);
           if(status.data == false){
               $('#bulb-body-fill').addClass('bulb-body-fill');
               $('#one').addClass('oneAnimation');
@@ -286,6 +128,31 @@
             }
         });
 
+        var battery_status = new ROSLIB.Topic({
+            ros : ros,
+            name : '/bat_status',
+            messageType : 'sensor_msgs/BatteryState'
+        });
+        battery_status.subscribe(function(battertyStatus) {
+            var maxBattery = 12.75;
+            var minBattery = 9.3;
+            var maxPerc = maxBattery - minBattery;
+            var percentage = 100 - (((12.75 - battertyStatus.voltage) * 100) / maxPerc);
+            console.log(percentage);
+            document.getElementById('batteryLevel').style.width = percentage+"%";
+            if(percentage >= 80 && percentage < 100){
+                document.getElementById('batteryLevel').style.backgroundColor = '#6cf76c';
+            }else if(percentage >= 60 && percentage < 80){
+                document.getElementById('batteryLevel').style.backgroundColor = '#c8f86b';
+            }else if(percentage >= 40 && percentage < 60){
+                document.getElementById('batteryLevel').style.backgroundColor = '#eef76c';
+            }else if(percentage >= 15 && percentage < 40){
+                document.getElementById('batteryLevel').style.backgroundColor = '#f7b46c';
+            }else{
+                document.getElementById('batteryLevel').style.backgroundColor = '#f76c6c';
+            }
+
+        });
 
     </script>
 
