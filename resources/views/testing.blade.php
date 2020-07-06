@@ -24,8 +24,11 @@
     <title>Aprosoft</title>
 </head>
 <body class="bodyAlign" id="body">
-    <button class="bg-primary rounded" id="saveBtn">GUARDAR MAPA</button> <button class="  rounded" id="redoBtn">REHACER MAPA</button>
-    <button class="bg-primary rounded" id="start">INICIAR EXPLORER</button> <button class="  rounded" id="shutdown">APAGAR PACHO</button>
+    <button disabled class="bg-primary rounded" id="saveBtn">GUARDAR MAPA</button>
+    <button disabled class="  rounded" id="redoBtn">REHACER MAPA</button>
+    <button disabled class="bg-primary rounded" id="start">INICIAR EXPLORER</button>
+    <button disabled class="  rounded" id="shutdown">APAGAR PACHO</button>
+    <button class="rounded" id="mapstatus3">Mapstatus 3</button>
     <div id="map">
 
     </div>

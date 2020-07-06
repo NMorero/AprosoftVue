@@ -1,5 +1,5 @@
 var ros = new ROSLIB.Ros({
-    url : 'ws://192.168.0.200:9090'
+    url : 'ws://192.168.0.26:9090'
 });
 
 ros.on('connection', function() {
@@ -121,7 +121,7 @@ var start = new ROSLIB.Topic({
 var mapStatus = new ROSLIB.Topic({
     ros : ros,
     name : '/mapstatus',
-    messageType : 'std_msgs/Bool'
+    messageType : 'std_msgs/Int16'
 });
 
 var btnRedo = document.getElementById('redoBtn');
@@ -155,4 +155,13 @@ btnDone.addEventListener('click', function(){
     }, 15000);
 
 })
+
+var btnStatus3 = document.getElementById("mapstatus3");
+btnStatus3.addEventListener('click', function(){
+    var twist4 = new ROSLIB.Message({
+        data: 3
+    });
+    mapStatus.publish(twist4);
+})
+
 //end

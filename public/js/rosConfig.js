@@ -2,7 +2,7 @@ var title = document.getElementById('actualStatus');
 var actualDoingSpan = document.getElementById('actualDoingSpan');
     title.innerHTML = 'Desconectado';
 var ros = new ROSLIB.Ros({
-    url : 'ws://192.168.0.200:9090'
+    url : 'ws://192.168.0.26:9090'
 });
 
 ros.on('connection', function() {
@@ -17,14 +17,16 @@ ros.on('error', function(error) {
     document.getElementById('btnTini').style.backgroundColor = '#ed5353';
 });
 
+
+
 var mapBox = document.getElementById('mapBox');
-var newWidth = 160;
+var newWidth = 678;
 var res = mapBox.offsetWidth - newWidth;
 document.getElementById('map').style.marginLeft = res/2 + 'px';
 var viewer = new ROS2D.Viewer({
 divID : 'map',
-width : 160,
-height : 288 ,
+width : 678,
+height : 436.5 ,
 });
 
 var gridClient = new ROS2D.OccupancyGridClient({
@@ -41,8 +43,8 @@ document.getElementById('map2').style.marginLeft = res/2 + 'px';
 // Create the main viewer.
 var viewer2 = new ROS2D.Viewer({
 divID : 'map2',
-width : 160,
-height : 288 ,
+width : 452,
+height : 291 ,
 });
 
 // Setup the map client.
@@ -53,7 +55,7 @@ let gridClient2 = new NAV2D.OccupancyGridClientNav({
     serverName: '/move_base'
 });
 
-var ip = ['192.168.0.200', '192.168.0.200'];
+var ip = ['192.168.0.26', '192.168.0.26'];
 var robotMarkers = [];
 var topics = [];
 var createFunc = function (handlerToCall, discriminator, robotMarker) {
@@ -259,6 +261,20 @@ function sendMission(id){
         // always executed
     });
 }
+
+var map_topic = new ROSLIB.Topic({
+    ros : ros,
+    name : '/map',
+    messageType : 'nav_msgs/OccupancyGrid'
+});
+var mapflag = 0
+map_topic.subscribe(function(mapInfo){
+    mapflag++;
+    if(mapflag == 2){
+        console.log(mapInfo.data);
+    }
+});
+
 
     /*
     var explore_status = new ROSLIB.Topic({

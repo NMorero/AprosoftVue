@@ -23,6 +23,14 @@ Route::get('/test', function () {
     return view('testing');
 });
 
+Route::get('/canvas', function () {
+    return view('canvasMap');
+});
+
+Route::get('/light', function () {
+    return view('lightPage');
+});
+
 Route::get('/getTasks', 'HomeController@getTasks');
 
 Route::get('/getMissions', 'HomeController@getMissions');
