@@ -206,7 +206,7 @@
 
     <script>
         var ros = new ROSLIB.Ros({
-            url : 'ws://192.168.0.26:9090'
+            url : 'ws://localhost:9090'
         });
 
         ros.on('connection', function() {
