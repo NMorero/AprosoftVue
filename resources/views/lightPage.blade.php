@@ -6,8 +6,7 @@
     , initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <script src="js/nav2d.js"></script>
     <script type="text/javascript" src="http://static.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
     <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
@@ -15,6 +14,9 @@
     <script src="js/ros2djs.js"></script>
 
     <style>
+    *{
+      font-family: 'Montserrat', sans-serif;
+    }
     body {
         padding-top: 25vh;
         background-color: rgba(156, 210, 210, .8);
