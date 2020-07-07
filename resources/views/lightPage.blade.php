@@ -139,27 +139,50 @@
             var maxPerc = maxBattery - minBattery;
             var percentage = 100 - (((12.75 - battertyStatus.voltage) * 100) / maxPerc);
             console.log(percentage);
-            document.getElementById('batteryLevel').style.width = percentage+"%";
+            //document.getElementById('batteryLevel').style.width = percentage+"%";
+
+
             if(percentage > 100){
-                document.getElementById('batteryLevel').style.backgroundColor = '#6cf76c';
+
+                document.getElementById('batteryLevel').style.backgroundColor = perc2color(100);
                 document.getElementById('batteryLevel').style.width = "100%";
-            }else if(percentage >= 80 && percentage < 100){
-                document.getElementById('batteryLevel').style.backgroundColor = '#6cf76c';
-            }else if(percentage >= 60 && percentage < 80){
-                document.getElementById('batteryLevel').style.backgroundColor = '#c8f86b';
-            }else if(percentage >= 40 && percentage < 60){
-                document.getElementById('batteryLevel').style.backgroundColor = '#eef76c';
-            }else if(percentage >= 15 && percentage < 40){
-                document.getElementById('batteryLevel').style.backgroundColor = '#f7b46c';
-            }else if(percentage >= 2 && percentage < 15){
-                document.getElementById('batteryLevel').style.backgroundColor = '#f76c6c';
-            }else{
-                document.getElementById('batteryLevel').style.backgroundColor = '#f76c6c';
+            }else if(percentage <= 1){
+                document.getElementById('batteryLevel').style.backgroundColor = perc2color(1);
                 document.getElementById('batteryLevel').style.width = "1%";
+            }else{
+                document.getElementById('batteryLevel').style.backgroundColor = perc2color(percentage);
+                document.getElementById('batteryLevel').style.width = percentage+"%";
             }
+            // }else if(percentage >= 80 && percentage < 100){
+            //     document.getElementById('batteryLevel').style.backgroundColor = '#6cf76c';
+            // }else if(percentage >= 60 && percentage < 80){
+            //     document.getElementById('batteryLevel').style.backgroundColor = '#c8f86b';
+            // }else if(percentage >= 40 && percentage < 60){
+            //     document.getElementById('batteryLevel').style.backgroundColor = '#eef76c';
+            // }else if(percentage >= 15 && percentage < 40){
+            //     document.getElementById('batteryLevel').style.backgroundColor = '#f7b46c';
+            // }else if(percentage >= 2 && percentage < 15){
+            //     document.getElementById('batteryLevel').style.backgroundColor = '#f76c6c';
+            // }else{
+            //     document.getElementById('batteryLevel').style.backgroundColor = '#f76c6c';
+            //     document.getElementById('batteryLevel').style.width = "1%";
+            // }
 
         });
 
+        function perc2color(perc) {
+	var r, g, b = 0;
+	if(perc < 50) {
+		r = 255;
+		g = Math.round(5.1 * perc);
+	}
+	else {
+		g = 255;
+		r = Math.round(510 - 5.10 * perc);
+	}
+	var h = r * 0x10000 + g * 0x100 + b * 0x1;
+	return '#' + ('000000' + h.toString(16)).slice(-6);
+}
     </script>
 
 </body>
