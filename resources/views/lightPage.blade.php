@@ -140,7 +140,10 @@
             var percentage = 100 - (((12.75 - battertyStatus.voltage) * 100) / maxPerc);
             console.log(percentage);
             document.getElementById('batteryLevel').style.width = percentage+"%";
-            if(percentage >= 80 && percentage < 100){
+            if(percentage > 100){
+                document.getElementById('batteryLevel').style.backgroundColor = '#6cf76c';
+                document.getElementById('batteryLevel').style.width = "100%";
+            }else if(percentage >= 80 && percentage < 100){
                 document.getElementById('batteryLevel').style.backgroundColor = '#6cf76c';
             }else if(percentage >= 60 && percentage < 80){
                 document.getElementById('batteryLevel').style.backgroundColor = '#c8f86b';
@@ -148,8 +151,11 @@
                 document.getElementById('batteryLevel').style.backgroundColor = '#eef76c';
             }else if(percentage >= 15 && percentage < 40){
                 document.getElementById('batteryLevel').style.backgroundColor = '#f7b46c';
+            }else if(percentage >= 2 && percentage < 15){
+                document.getElementById('batteryLevel').style.backgroundColor = '#f76c6c';
             }else{
                 document.getElementById('batteryLevel').style.backgroundColor = '#f76c6c';
+                document.getElementById('batteryLevel').style.width = "1%";
             }
 
         });
