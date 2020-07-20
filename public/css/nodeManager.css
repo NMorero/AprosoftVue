@@ -5,13 +5,51 @@ body, html {
     display: -ms-flexbox;
     display: -webkit-flex;
     justify-content: center;
+    background-color: #048CDC !important;
+    font-family: 'Open Sans', sans-serif !important;
+    color: white;
+}
 
-    background-color: #ededed !important;
+*{
+    /* background-color: #048CDC !important; */
     font-family: 'Open Sans', sans-serif !important;
 }
-*{
-    background-color: #ededed !important;
-    font-family: 'Open Sans', sans-serif !important;
+#starting{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.5s, opacity 0.5s, display 0.5s linear;
+}
+#panel{
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s, display 0.5s linear;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    padding: 10%;
+}
+#controlsBox{
+    display: none;
+}
+.buttonPanel{
+    border: 2px solid aliceblue;
+    width: 15vw;
+    height: 10vh;
+    display: flex;
+    font-size: 2rem;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    align-items: inherit;
+    margin-right: 1vw;
+    border-radius: 10px;
+    color: white !important;
+    text-decoration: none;
+    background-color: #048CDC !important;
+}
+.buttonPanelSmall, .buttonPanelSmall2, .buttonPanelSmall3{
+    display: none;
 }
 .blinking {
     animation: blinker 2s linear infinite;
@@ -23,12 +61,6 @@ body, html {
     }
   }
 
-#saving{
-    display: none;
-}
-#booting{
-    display: none;
-}
 .bodyAlign{
     align-items: center;
 }
@@ -37,114 +69,24 @@ body, html {
     align-items:center;
     color: #23abea;
 }
-#exploreEnd{
-    display: none;
-}
-#exploringEnded{
-    font-size: 4rem !important;
-}
 
-#start{
-    cursor: pointer;
-}
+
 .middle h3{
     font-size: 6rem !important;
     text-decoration: none;
     cursor: default;
+    color: aliceblue;
 }
-.middle span{
+.waitMessage{
     font-size: 2rem !important;
+    color: aliceblue;
 }
-#exploration{
-    display: none;
-    margin-top: 40%;
-}
-#exploring{
-    display: none;
-}
-#exploration div{
-    margin-top: 10%;
-}
-.btnTurnOff{
-    background-color: orange !important;
-    border: 0px;
-    height: 12vh;
-    width: 23vw;
-    font-size: 2.5rem;
-    color: white;
+
+.imgLogo{
     position: absolute;
-    right: 6rem;
-    bottom: 8rem;
-}
-
-.btnStart{
-    color: white;
-    border: 0px;
-    height: 12vh;
-    width: 23vw;
-    position: absolute;
-    left: 6rem;
-    bottom: 8rem;
-    font-size: 2.5rem;
-}
-
-@media (min-width: 1300px) {
-    .btnTurnOff{
-        background-color: orange !important;
-        border: 0px;
-        height: 12vh;
-        width: 20vw;
-        font-size: 2.5rem;
-        color: white;
-        position: absolute;
-        right: 10rem;
-        bottom: 2rem;
-    }
-    .btnStart{
-        color: white;
-        border: 0px;
-        height: 12vh;
-        width: 20vw;
-        position: absolute;
-        left: 10rem;
-        bottom: 2rem;
-        font-size: 2.5rem;
-    }
-    .middle p{
-        font-size: 6rem !important;
-        font-weight: 600;
-        position: relative;
-        bottom: 8rem;
-    }
-}
-
-#status{
-    color: black;
-    position: relative;
-    bottom: 10rem;
-}
-.middle p{
-    font-size: 4rem;
-    font-weight: 600;
-    position: relative;
-    bottom: 8rem;
-}
-#imgLoader{
-    display: none;
-}
-
-#map{
-    display: inline-block;
-    margin-left: 1%;
-    margin-top: 4%;
-}
-
-.bgDegraded{
-    background: linear-gradient(to right, #58abef , #8111f9);
-    color: white;
-}
-#saveBtn{
-    border: 1px solid white;
+    top: 5vh;
+    left: 45vw;
+    width: 10vw;
 }
 
 @media (max-width: 420px){
@@ -153,38 +95,68 @@ body, html {
         text-decoration: none;
         cursor: default;
     }
-    .middle span{
-        font-size: 2rem !important;
+    .waitMessage{
+        font-size: 1rem !important;
     }
-    .middle p{
-        font-size: 3rem !important;
-        font-weight: 600;
-        position: relative;
-        bottom: 8rem;
-    }
-    .btnTurnOff{
-        background-color: orange !important;
-        border: 0px;
-        height: 12vh;
-        width: 40vw;
-        font-size: 1.6rem;
-        color: white;
+    .imgLogo{
         position: absolute;
-        right: 2rem;
-        bottom: 5rem;
+        top: 5vh;
+        left: 37.5vw;
+        width: 25vw;
     }
-    .btnStart{
-        color: white;
-        border: 0px;
-        height: 12vh;
-        width: 40vw;
+    .buttonPanelSmall{
         position: absolute;
-        left: 2rem;
-        bottom: 5rem;
-        font-size: 1.6rem;
+        top:40vh;
+        border: 2px solid aliceblue;
+        width: 110vw;
+        height: 10vh;
+        display: flex;
+        font-size: 2rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: inherit;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
     }
-    #exploringEnded{
-        font-size: 3rem !important;
+    .buttonPanelSmall2{
+        position: absolute;
+        top: 53vh;
+        border: 2px solid aliceblue;
+        width: 110vw;
+        height: 10vh;
+        display: flex;
+        font-size: 2rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: inherit;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+    }
+    .buttonPanelSmall3{
+        position: absolute;
+        top: 66vh;
+        border: 2px solid aliceblue;
+        width: 110vw;
+        height: 10vh;
+        display: flex;
+        font-size: 2rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: inherit;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+    }
+    .buttonPanel{
+        display: none;
     }
 }
 

@@ -58,7 +58,7 @@
 
     <script>
         var ros = new ROSLIB.Ros({
-            url : 'ws://10.42.0.32:9090'
+            url : 'ws://192.168.0.42:9090'
         });
 
         ros.on('connection', function() {
@@ -143,7 +143,6 @@
 
 
             if(percentage > 100){
-
                 document.getElementById('batteryLevel').style.backgroundColor = perc2color(100);
                 document.getElementById('batteryLevel').style.width = "100%";
             }else if(percentage <= 1){
