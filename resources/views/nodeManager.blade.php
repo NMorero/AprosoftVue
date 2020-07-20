@@ -37,7 +37,7 @@
         <button class="buttonPanel">Exploración</button>
         <button class="buttonPanel">Apagar</button>
 
-        <button class="buttonPanelSmall" id="Controls">Controles</button>
+        <button class="buttonPanelSmall" id="Controls1">Controles</button>
 
         <button class="buttonPanelSmall2">Exploración</button>
 
@@ -73,8 +73,14 @@
             }, 500);
         }, 2000);
 
-        var buttonControls = document.getElementById('Controls');
-        buttonControls.addEventListener('click', function(){
+        var buttonControls1 = document.getElementById('Controls');
+        buttonControls1.addEventListener('click', function(){
+            panel.style.display = 'none';
+            var controlsBox = document.getElementById('controlsBox');
+            controlsBox.style.display = 'block';
+        });
+        var buttonControls2 = document.getElementById('Controls1');
+        buttonControls2.addEventListener('click', function(){
             panel.style.display = 'none';
             var controlsBox = document.getElementById('controlsBox');
             controlsBox.style.display = 'block';
