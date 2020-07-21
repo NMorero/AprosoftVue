@@ -19,6 +19,9 @@ body, html {
     opacity: 1;
     transition: visibility 0.5s, opacity 0.5s, display 0.5s linear;
 }
+#explorationBox{
+    display: none;
+}
 #panel{
     display: none;
     visibility: hidden;
@@ -32,22 +35,7 @@ body, html {
 #controlsBox{
     display: none;
 }
-.buttonPanel{
-    border: 2px solid aliceblue;
-    width: 15vw;
-    height: 10vh;
-    display: flex;
-    font-size: 2rem;
-    align-content: center;
-    text-align: center;
-    justify-content: center;
-    align-items: inherit;
-    margin-right: 1vw;
-    border-radius: 10px;
-    color: white !important;
-    text-decoration: none;
-    background-color: #048CDC !important;
-}
+
 .buttonPanelSmall, .buttonPanelSmall2, .buttonPanelSmall3{
     display: none;
 }
@@ -89,7 +77,47 @@ body, html {
     width: 10vw;
 }
 
+.lightControls{
+    position: absolute;
+    right: 15vw;
+    top: 50vh;
+}
+.lightControls span {
+    color: white !important;
+}
+#lightBtn{
+    border: 2px solid aliceblue;
+        width: 25vw;
+        height: 20vh;
+        display: flex;
+        font-size: 1.5rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: inherit;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+        padding-top: auto;
+}
 @media (max-width: 420px){
+    #rotateDevice{
+        display: flex;
+        justify-content: center;
+        background-color: #048CDC;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 999;
+        width: 100vw;
+        height: 100vh;
+    }
+    #rotateDevice img{
+        position: absolute;
+        height: 50vh;
+        top: 25vh;
+    }
     .middle h3{
         font-size: 3rem !important;
         text-decoration: none;
@@ -107,6 +135,7 @@ body, html {
     .buttonPanelSmall{
         position: absolute;
         top:40vh;
+        left: -4vw;
         border: 2px solid aliceblue;
         width: 110vw;
         height: 10vh;
@@ -124,6 +153,7 @@ body, html {
     .buttonPanelSmall2{
         position: absolute;
         top: 53vh;
+        left: -4vw;
         border: 2px solid aliceblue;
         width: 110vw;
         height: 10vh;
@@ -141,6 +171,7 @@ body, html {
     .buttonPanelSmall3{
         position: absolute;
         top: 66vh;
+        left: -4vw;
         border: 2px solid aliceblue;
         width: 110vw;
         height: 10vh;
@@ -155,12 +186,214 @@ body, html {
         text-decoration: none;
         background-color: #048CDC !important;
     }
-    .buttonPanel{
+    .buttonPanel1{
+        display: none;
+    }
+    .buttonPanel2{
+        display: none;
+    }
+    .buttonPanel3{
+        display: none;
+    }
+    #joystick{
         display: none;
     }
 }
 
+@media only screen  and (min-device-width: 300px) and (orientation: landscape) {
+    #rotateDevice{
+        display: none;
+    }
+    .middle h3{
+        font-size: 3rem !important;
+        text-decoration: none;
+        cursor: default;
+        color: aliceblue;
+    }
+    .waitMessage{
+        font-size: 1rem !important;
+    }
+    .buttonPanel1{
+        position: absolute;
+        left: 3vw;
+        top: 50vh;
+        border: 2px solid aliceblue;
+        border: 2px solid aliceblue;
+        width: 30vw;
+        height: 16vh;
+        display: flex;
+        font-size: 1.5rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: inherit;
+        margin-right: 2vw;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+    }
+    .buttonPanel2{
+        position: absolute;
+        left: 35vw;
+        top: 50vh;
+        border: 2px solid aliceblue;
+        border: 2px solid aliceblue;
+        width: 30vw;
+        height: 16vh;
+        display: flex;
+        font-size: 1.5rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: inherit;
+        margin-right: 2vw;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+    }
+    .buttonPanel3{
+        position: absolute;
+        left: 67vw;
+        top: 50vh;
+        border: 2px solid aliceblue;
+        border: 2px solid aliceblue;
+        width: 30vw;
+        height: 16vh;
+        display: flex;
+        font-size: 1.5rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: inherit;
+        margin-right: 2vw;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+    }
+    .buttonPanelSmall{
+        display: none;
+    }
+    .buttonPanelSmall2{
+        display: none;
+    }
+    .buttonPanelSmall3{
+        display: none;
+    }
+    #lightBtn{
+        border: 2px solid aliceblue;
+        width: 25vw;
+        height: 20vh;
+        display: flex;
+        font-size: 1.5rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+
+    }
+    #joystick{
+
+        position: absolute;
+        left: -10vw;
+        top: 40vh;
+    }
+}
 
 
 /*
 */
+@media (min-width: 700px) and (min-height: 900px){
+    .middle h3{
+        font-size: 6rem !important;
+        text-decoration: none;
+        cursor: default;
+        color: aliceblue;
+    }
+    .waitMessage{
+        font-size: 1rem !important;
+    }
+    .buttonPanel1{
+        position: absolute;
+        top: 50vh;
+        left: 20vw;
+        border: 2px solid aliceblue;
+        width: 15vw;
+        height: 10vh;
+        display: flex;
+        font-size: 2rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: inherit;
+        margin-right: 1vw;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+    }
+    .buttonPanel2{
+        position: absolute;
+        top: 50vh;
+        left: 43vw;
+        border: 2px solid aliceblue;
+        width: 15vw;
+        height: 10vh;
+        display: flex;
+        font-size: 2rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: inherit;
+        margin-right: 1vw;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+    }
+    .buttonPanel3{
+        position: absolute;
+        top: 50vh;
+        left: 66vw;
+        border: 2px solid aliceblue;
+        width: 15vw;
+        height: 10vh;
+        display: flex;
+        font-size: 2rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: inherit;
+        margin-right: 1vw;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+    }
+    #lightBtn{
+        border: 2px solid aliceblue;
+        width: 25vw;
+        height: 20vh;
+        display: flex;
+        font-size: 4rem;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        color: white !important;
+        text-decoration: none;
+        background-color: #048CDC !important;
+    }
+    #joystick{
+        position: absolute;
+        left: -10vw;
+        top: 20vh;
+    }
+}

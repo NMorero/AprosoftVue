@@ -93,8 +93,8 @@ explore_status.subscribe(function(explore) {
         console.log('Listo explore');
             var viewer = new ROS2D.Viewer({
                 divID : 'map',
-                width : 160,
-                height : 288 ,
+                width : 350,
+                height : 350 ,
             });
             var gridClient = new ROS2D.OccupancyGridClient({
                 ros : ros,

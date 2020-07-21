@@ -16,7 +16,7 @@
     <script src="js/ros2djs.js"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('/css/loading-bar.css')}}"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <script type="text/javascript" src="{{asset('/js/loading-bar.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{asset('/js/loading-bar.js')}}"></script> --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('/css/threeDots.css')}}">
 
@@ -25,7 +25,7 @@
 </head>
 <body class="bodyAlign" id="body">
 
-    <img class="imgLogo" src="{{asset('reso/logoSaniRobo2.png')}}" alt="">
+    <img class="imgLogo" id="logo" src="{{asset('reso/logoSaniRobo2.png')}}" alt="">
 
     <div class="middle text-center" id="starting">
         <h3 class="blinking">INICIANDO</h3>
@@ -33,18 +33,21 @@
     </div>
 
     <div class="middle text-center" id="panel">
-        <button class="buttonPanel" id="Controls">Controles</button>
-        <button class="buttonPanel">Exploración</button>
-        <button class="buttonPanel">Apagar</button>
+        <button class="buttonPanel1" id="Controls">Controles</button>
+        <button class="buttonPanel2" id="Explorer">Exploración</button>
+        <button class="buttonPanel3">Apagar</button>
 
         <button class="buttonPanelSmall" id="Controls1">Controles</button>
 
-        <button class="buttonPanelSmall2">Exploración</button>
+        <button class="buttonPanelSmall2" id="Explorer1">Exploración</button>
 
-        <button class="buttonPanelSmall3">Apagar</button>
+        <button class="buttonPanelSmall3">Appagar</button>
     </div>
 
     <div id="controlsBox">
+        <div id="rotateDevice">
+            <img src="{{asset('/reso/rotateDevice.png')}}" alt="">
+        </div>
         <!-- JOYSTICK -->
         <div class="row my-4">
             <div class="col">
@@ -52,6 +55,20 @@
                     <div id="joystick"></div>
                 </div>
             </div>
+        </div>
+        <div class="lightControls">
+            <button id="lightBtn" class="">Lights: Off</button>
+        </div>
+    </div>
+
+    <div class="middle text-center" id="explorationBox">
+        <h3 class="blinking">Explorando</h3>
+        <span class="waitMessage">POR FAVOR ESPERE</span>
+    </div>
+
+    <div class="middle text-center" id="exploreEnd">
+        <div id="map">
+
         </div>
     </div>
 
@@ -85,6 +102,12 @@
             var controlsBox = document.getElementById('controlsBox');
             controlsBox.style.display = 'block';
         });
+        var logo = document.getElementById('logo');
+        logo.addEventListener('click', function(){
+            panel.style.display = 'block';
+            controlsBox.style.display = 'none';
+        });
+
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
 <script type="text/javascript" type="text/javascript">
@@ -92,6 +115,102 @@
       url : 'ws://10.42.0.1:9090'
     });
 
+    var start = new ROSLIB.Topic({
+        ros : ros,
+        name : '/start',
+        messageType : 'std_msgs/Bool'
+    });
+
+    var buttonExplorer = document.getElementById('Explorer');
+    buttonExplorer.addEventListener('click', function(){
+        panel.style.display = 'none';
+        var explorationBox = document.getElementById('explorationBox');
+        explorationBox.style.display = 'block';
+        var twist = new ROSLIB.Message({
+            data: true
+        });
+        start.publish(twist);
+    });
+    var buttonExplorer2 = document.getElementById('Explorer2');
+    if(buttonExplorer2){
+        buttonExplorer2.addEventListener('click', function(){
+        panel.style.display = 'none';
+        var explorationBox = document.getElementById('explorationBox');
+        explorationBox.style.display = 'block';
+        var twist = new ROSLIB.Message({
+            data: true
+        });
+        start.publish(twist);
+    });
+    }
+    var explore_status = new ROSLIB.Topic({
+    ros : ros,
+    name : '/explore_status',
+    messageType : 'std_msgs/Bool'
+    });
+
+    var flagExplo = 0;
+
+    explore_status.subscribe(function(explore) {
+        flagExplo++;
+        if(flagExplo == 2){
+            console.log('Listo explore');
+                var viewer = new ROS2D.Viewer({
+                    divID : 'map',
+                    width : 350,
+                    height : 350 ,
+                });
+                var gridClient = new ROS2D.OccupancyGridClient({
+                    ros : ros,
+                    rootObject : viewer.scene
+                });
+
+                gridClient.on('change', function(){
+                    viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
+                    viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
+                });
+                var element = document.getElementById("body");
+                //element.classList.remove("bodyAlign")
+                document.getElementById('explorationBox').style.display = 'none';
+                document.getElementById('exploreEnd').style.display = 'block';
+        }
+    });
+
+    var lamp_status = new ROSLIB.Topic({
+            ros : ros,
+            name : '/lamp_status',
+            messageType : 'std_msgs/Bool'
+    });
+
+    var lamp_goal = new ROSLIB.Topic({
+        ros : ros,
+        name : '/lamp_goal',
+        messageType : 'std_msgs/Bool'
+    });
+
+    lamp_status.subscribe(function(status) {
+          if(status.data == false){
+              document.getElementById('lightBtn').innerHTML = 'Lights: Off';
+          }else{
+            document.getElementById('lightBtn').innerHTML = 'Lights: On';
+          }
+    });
+    var btnLight = document.getElementById('lightBtn');
+    btnLight.addEventListener('click', function(){
+        if($('#lightBtn').hasClass('on')){
+                console.log('Apagar');
+                var goal = new ROSLIB.Message({
+                    data: false
+                });
+                lamp_goal.publish(goal);
+            }else{
+                console.log('Prender');
+                var goal = new ROSLIB.Message({
+                    data: true
+                });
+                lamp_goal.publish(goal);
+            }
+    });
     // ros.on('connection', function() {
     //   document.getElementById("status").innerHTML = "Connected";
     // });
@@ -164,8 +283,8 @@
 
         self.manager.on('move', function (event, nipple) {
           console.log("Moving");
-      max_linear = 0.05; // m/s
-        max_angular = 0.05; // rad/s
+      max_linear = 0.3; // m/s
+        max_angular = 0.5; // rad/s
         max_distance = 75.0; // pixels;
         linear_speed = Math.sin(nipple.angle.radian) * max_linear * nipple.distance/max_distance;
         angular_speed = -Math.cos(nipple.angle.radian) * max_angular * nipple.distance/max_distance;
