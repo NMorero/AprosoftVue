@@ -3,13 +3,20 @@ var ros = new ROSLIB.Ros({
 });
 
 ros.on('connection', function() {
-    console.log('Connected to websocket server.');
     setTimeout(function(){
-        document.getElementById('starting').style.display = 'none';
-    var element = document.getElementById("body");
-    element.classList.remove("bodyAlign")
-    document.getElementById('exploration').style.display = 'block';
-    }, 3000);
+        var starting = document.getElementById('starting');
+        starting.style.visibility = 'hidden';
+        starting.style.opacity = 0;
+        setTimeout(function(){
+            starting.style.display = 'none';
+            var panel = document.getElementById('panel');
+            panel.style.display = 'flex';
+            setTimeout(function(){
+                panel.style.visibility = 'visible';
+                panel.style.opacity = 1;
+            }, 500);
+        }, 500);
+    }, 2000);
 
 });
 
@@ -89,8 +96,9 @@ var flagExplo = 0;
 
 explore_status.subscribe(function(explore) {
     flagExplo++;
-    if(flagExplo == 2){
-        console.log('Listo explore');
+    if(flagExplo == 1){
+        setTimeout(function(){
+            console.log('Listo explore');
             var viewer = new ROS2D.Viewer({
                 divID : 'map',
                 width : 350,
@@ -109,6 +117,7 @@ explore_status.subscribe(function(explore) {
             element.classList.remove("bodyAlign")
             document.getElementById('exploring').style.display = 'none';
             document.getElementById('exploreEnd').style.display = 'block';
+        }, 3000)
     }
 });
 
@@ -124,7 +133,7 @@ var mapStatus = new ROSLIB.Topic({
     messageType : 'std_msgs/Int16'
 });
 
-var btnRedo = document.getElementById('redoBtn');
+var btnRedo = document.getElementById('buttonRedoMap');
 btnRedo.addEventListener('click', function(){
     var twist3 = new ROSLIB.Message({
         data: 2
@@ -139,7 +148,7 @@ btnRedo.addEventListener('click', function(){
     }, 12000);
 })
 
-var btnDone = document.getElementById('saveBtn');
+var btnDone = document.getElementById('buttonSaveMap');
 btnDone.addEventListener('click', function(){
     console.log('btnSave');
     var twist3 = new ROSLIB.Message({

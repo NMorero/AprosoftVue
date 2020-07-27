@@ -10,14 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
     <script src="js/nav2d.js"></script>
-    <script type="text/javascript" src="http://static.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
-    <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/easeljs.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/eventEmitter2.min.js')}}"></script>
     <script src="js/roslibjs.js"></script>
     <script src="js/ros2djs.js"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('/css/loading-bar.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/slick.css')}}"/>
     {{-- <script type="text/javascript" src="{{asset('/js/loading-bar.js')}}"></script> --}}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('/css/threeDots.css')}}">
 
 
@@ -70,25 +69,17 @@
         <div id="map">
 
         </div>
+        <button id="buttonSaveMap">Guardar</button>
+        <button id="buttonRedoMap">Rehacer</button>
     </div>
 
-
+    <div class="middle text-center" id="booting">
+        <h3 class="blinking">Reiniciando</h3>
+        <span class="waitMessage">POR FAVOR ESPERE</span>
+    </div>
     {{-- <script src="{{asset('js/testNode.js')}}"></script> --}}
     <script>
-        setTimeout(function(){
-            var starting = document.getElementById('starting');
-            starting.style.visibility = 'hidden';
-            starting.style.opacity = 0;
-            setTimeout(function(){
-                starting.style.display = 'none';
-                var panel = document.getElementById('panel');
-                panel.style.display = 'flex';
-                setTimeout(function(){
-                    panel.style.visibility = 'visible';
-                    panel.style.opacity = 1;
-                }, 500);
-            }, 500);
-        }, 2000);
+
 
         var buttonControls1 = document.getElementById('Controls');
         buttonControls1.addEventListener('click', function(){
@@ -109,11 +100,13 @@
         });
 
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
+    <script type="text/javascript" src="{{asset('js/nipple.js')}}"></script>
 <script type="text/javascript" type="text/javascript">
     var ros = new ROSLIB.Ros({
       url : 'ws://10.42.0.1:9090'
     });
+
+
 
     var start = new ROSLIB.Topic({
         ros : ros,
@@ -143,6 +136,12 @@
         start.publish(twist);
     });
     }
+    var mapStatus = new ROSLIB.Topic({
+        ros : ros,
+        name : '/mapstatus',
+        messageType : 'std_msgs/Int16'
+    });
+
     var explore_status = new ROSLIB.Topic({
     ros : ros,
     name : '/explore_status',
@@ -153,8 +152,9 @@
 
     explore_status.subscribe(function(explore) {
         flagExplo++;
-        if(flagExplo == 2){
-            console.log('Listo explore');
+        if(flagExplo == 1){
+            setTimeout(function(){
+                console.log('Listo explore');
                 var viewer = new ROS2D.Viewer({
                     divID : 'map',
                     width : 350,
@@ -173,6 +173,7 @@
                 //element.classList.remove("bodyAlign")
                 document.getElementById('explorationBox').style.display = 'none';
                 document.getElementById('exploreEnd').style.display = 'block';
+            }, 2000)
         }
     });
 
@@ -283,7 +284,7 @@
 
         self.manager.on('move', function (event, nipple) {
           console.log("Moving");
-      max_linear = 0.3; // m/s
+      max_linear = 0.2; // m/s
         max_angular = 0.5; // rad/s
         max_distance = 75.0; // pixels;
         linear_speed = Math.sin(nipple.angle.radian) * max_linear * nipple.distance/max_distance;
@@ -310,10 +311,10 @@
 
 
   </script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="{{asset('js/axios.min.js')}}"></script>
+    <script src="{{asset('js/jquery-3.5.1.slim.min.js')}}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="{{asset('js/popper.min.js')}}" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 
 
