@@ -106,7 +106,24 @@
       url : 'ws://10.42.0.1:9090'
     });
 
+    ros.on('connection', function() {
+    console.log('si')
+    setTimeout(function(){
+        var starting = document.getElementById('starting');
+        starting.style.visibility = 'hidden';
+        starting.style.opacity = 0;
+        setTimeout(function(){
+            starting.style.display = 'none';
+            var panel = document.getElementById('panel');
+            panel.style.display = 'flex';
+            setTimeout(function(){
+                panel.style.visibility = 'visible';
+                panel.style.opacity = 1;
+            }, 500);
+        }, 500);
+    }, 2000);
 
+});
 
     var start = new ROSLIB.Topic({
         ros : ros,
@@ -151,32 +168,62 @@
     var flagExplo = 0;
 
     explore_status.subscribe(function(explore) {
-        flagExplo++;
-        if(flagExplo == 1){
-            setTimeout(function(){
-                console.log('Listo explore');
-                var viewer = new ROS2D.Viewer({
-                    divID : 'map',
-                    width : 350,
-                    height : 350 ,
-                });
-                var gridClient = new ROS2D.OccupancyGridClient({
-                    ros : ros,
-                    rootObject : viewer.scene
-                });
+    flagExplo++;
+    if(flagExplo == 1){
+        setTimeout(function(){
+            console.log('Listo explore');
+            var viewer = new ROS2D.Viewer({
+                divID : 'map',
+                width : 350,
+                height : 350 ,
+            });
+            var gridClient = new ROS2D.OccupancyGridClient({
+                ros : ros,
+                rootObject : viewer.scene
+            });
 
-                gridClient.on('change', function(){
-                    viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
-                    viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
-                });
-                var element = document.getElementById("body");
-                //element.classList.remove("bodyAlign")
-                document.getElementById('explorationBox').style.display = 'none';
-                document.getElementById('exploreEnd').style.display = 'block';
-            }, 2000)
-        }
+            gridClient.on('change', function(){
+                viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
+                viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
+            });
+            var element = document.getElementById("body");
+            element.classList.remove("bodyAlign")
+            document.getElementById('exploring').style.display = 'none';
+            document.getElementById('exploreEnd').style.display = 'block';
+        }, 3000)
+    }
+});
+var btnRedo = document.getElementById('buttonRedoMap');
+btnRedo.addEventListener('click', function(){
+    var twist3 = new ROSLIB.Message({
+        data: 2
     });
+    mapStatus.publish(twist3);
+    var element = document.getElementById("body");
+        element.classList.add("bodyAlign")
+        document.getElementById('exploreEnd').style.display = 'none';
+        document.getElementById('booting').style.display = 'block';
+    setTimeout(function(){
+        window.location.href = '/';
+    }, 12000);
+})
 
+var btnDone = document.getElementById('buttonSaveMap');
+btnDone.addEventListener('click', function(){
+    console.log('btnSave');
+    var twist3 = new ROSLIB.Message({
+        data: 1
+    });
+    mapStatus.publish(twist3);
+    var element = document.getElementById("body");
+        element.classList.add("bodyAlign")
+        document.getElementById('exploreEnd').style.display = 'none';
+        document.getElementById('saving').style.display = 'block';
+    setTimeout(function(){
+        window.location.href = '/home';
+    }, 15000);
+
+})
     var lamp_status = new ROSLIB.Topic({
             ros : ros,
             name : '/lamp_status',
