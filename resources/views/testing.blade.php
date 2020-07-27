@@ -24,14 +24,15 @@
     <title>Aprosoft</title>
 </head>
 <body class="bodyAlign" id="body">
-    <button disabled class="bg-primary rounded" id="saveBtn">GUARDAR MAPA</button>
+    {{-- <button disabled class="bg-primary rounded" id="saveBtn">GUARDAR MAPA</button>
     <button disabled class="  rounded" id="redoBtn">REHACER MAPA</button>
     <button disabled class="bg-primary rounded" id="start">INICIAR EXPLORER</button>
     <button disabled class="  rounded" id="shutdown">APAGAR PACHO</button>
     <button class="rounded" id="mapstatus3">Mapstatus 3</button>
     <div id="map">
 
-    </div>
+    </div> --}}
+    <img src="{{asset('reso/sample1.png')}}" alt="">
     <script src="{{asset('js/testNode.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

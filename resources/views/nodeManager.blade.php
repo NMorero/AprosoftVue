@@ -66,15 +66,17 @@
     </div>
 
     <div class="middle text-center" id="exploreEnd">
-        <div id="map">
-
-        </div>
+        <img id="map" src="{{asset('reso/map.png')}}" alt="">
         <button id="buttonSaveMap">Guardar</button>
         <button id="buttonRedoMap">Rehacer</button>
     </div>
 
     <div class="middle text-center" id="booting">
         <h3 class="blinking">Reiniciando</h3>
+        <span class="waitMessage">POR FAVOR ESPERE</span>
+    </div>
+    <div class="middle text-center" id="saving">
+        <h3 class="blinking">Guardando</h3>
         <span class="waitMessage">POR FAVOR ESPERE</span>
     </div>
     {{-- <script src="{{asset('js/testNode.js')}}"></script> --}}
@@ -169,28 +171,12 @@
 
     explore_status.subscribe(function(explore) {
     flagExplo++;
+    console.log('Listo explore');
     if(flagExplo == 1){
         setTimeout(function(){
-            console.log('Listo explore');
-            var viewer = new ROS2D.Viewer({
-                divID : 'map',
-                width : 350,
-                height : 350 ,
-            });
-            var gridClient = new ROS2D.OccupancyGridClient({
-                ros : ros,
-                rootObject : viewer.scene
-            });
-
-            gridClient.on('change', function(){
-                viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
-                viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
-            });
-            var element = document.getElementById("body");
-            element.classList.remove("bodyAlign")
             document.getElementById('explorationBox').style.display = 'none';
             document.getElementById('exploreEnd').style.display = 'block';
-        }, 3000)
+        }, 10000)
     }
 });
 var btnRedo = document.getElementById('buttonRedoMap');

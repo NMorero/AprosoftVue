@@ -27,7 +27,7 @@ body, html {
 }
 #buttonSaveMap{
     position: absolute;
-    bottom: 25vh;
+    bottom: 20vh;
     left: 10vw;
     width: 20vw;
     height: 10vh;
@@ -36,6 +36,10 @@ body, html {
     border-radius: 10px;
     color: aliceblue;
     font-size: 2rem;
+}
+#map{
+    width: 300px;
+    border-radius: 10px;
 }
 #buttonRedoMap{
     position: absolute;
@@ -50,6 +54,9 @@ color: aliceblue;
 font-size: 2rem;
 }
 #booting{
+    display: none;
+}
+#saving{
     display: none;
 }
 #panel{
