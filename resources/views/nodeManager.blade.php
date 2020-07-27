@@ -188,7 +188,7 @@
             });
             var element = document.getElementById("body");
             element.classList.remove("bodyAlign")
-            document.getElementById('exploring').style.display = 'none';
+            document.getElementById('explorationBox').style.display = 'none';
             document.getElementById('exploreEnd').style.display = 'block';
         }, 3000)
     }
