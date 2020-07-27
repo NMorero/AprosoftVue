@@ -1,8 +1,9 @@
 var ros = new ROSLIB.Ros({
-    url : 'ws://10.42.0.32:9090'
+    url : 'ws://10.42.0.1:9090'
 });
 
 ros.on('connection', function() {
+    console.log('si')
     setTimeout(function(){
         var starting = document.getElementById('starting');
         starting.style.visibility = 'hidden';
