@@ -138,7 +138,100 @@ font-size: 2rem;
         background-color: #048CDC !important;
         padding-top: auto;
 }
+@media (min-width: 1100px) and (max-width: 1700px){
+    #buttonSaveMap{
+        position: absolute;
+        bottom: 40vh;
+        left: 10vw;
+        width: 20vw;
+        height: 10vh;
+        background-color: #048CDC;
+        border: 1px solid aliceblue;
+        border-radius: 10px;
+        color: aliceblue;
+        font-size: 2rem;
+    }
+    #map{
+        position: relative;
+        top: 8vh;
+        width: 300px;
+        border-radius: 10px;
+    }
+    #buttonRedoMap{
+        position: absolute;
+        bottom: 40vh;
+        right: 10vw;
+        width: 20vw;
+        height: 10vh;
+        background-color: #048CDC;
+        border: 1px solid aliceblue;
+        border-radius: 10px;
+        color: aliceblue;
+        font-size: 2rem;
+    }
+}
+@media (min-width: 1700px) {
+    #buttonSaveMap{
+        position: absolute;
+        bottom: 40vh;
+        left: 10vw;
+        width: 20vw;
+        height: 10vh;
+        background-color: #048CDC;
+        border: 1px solid aliceblue;
+        border-radius: 10px;
+        color: aliceblue;
+        font-size: 2rem;
+    }
+    #map{
+        position: relative;
+        top: 8vh;
+        width: 400px;
+        border-radius: 10px;
+    }
+    #buttonRedoMap{
+        position: absolute;
+        bottom: 40vh;
+        right: 10vw;
+        width: 20vw;
+        height: 10vh;
+        background-color: #048CDC;
+        border: 1px solid aliceblue;
+        border-radius: 10px;
+        color: aliceblue;
+        font-size: 2rem;
+    }
+}
 @media (max-width: 420px){
+
+    #buttonSaveMap{
+        position: absolute;
+        bottom: 10vh;
+        left: 5vw;
+        width: 40vw;
+        height: 10vh;
+        background-color: #048CDC;
+        border: 1px solid aliceblue;
+        border-radius: 10px;
+        color: aliceblue;
+        font-size: 1.5rem;
+    }
+    #map{
+        width: 200px;
+        border-radius: 10px;
+    }
+    #buttonRedoMap{
+        position: absolute;
+        bottom: 10vh;
+        right: 5vw;
+        width: 40vw;
+        height: 10vh;
+        background-color: #048CDC;
+        border: 1px solid aliceblue;
+        border-radius: 10px;
+        color: aliceblue;
+        font-size: 1.5rem;
+    }
     #rotateDevice{
         display: flex;
         justify-content: center;

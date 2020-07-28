@@ -66,7 +66,7 @@
     </div>
 
     <div class="middle text-center" id="exploreEnd">
-        <img id="map" src="{{asset('reso/map.png')}}" alt="">
+        <img id="map" src="/reso/map.png" alt="">
         <button id="buttonSaveMap">Guardar</button>
         <button id="buttonRedoMap">Rehacer</button>
     </div>
@@ -96,9 +96,19 @@
             controlsBox.style.display = 'block';
         });
         var logo = document.getElementById('logo');
+        var explorationBox = document.getElementById('explorationBox');
+        var starting = document.getElementById('starting');
+        var booting = document.getElementById('booting');
+        var saving = document.getElementById('saving');
+        var exploreEnd = document.getElementById('exploreEnd');
         logo.addEventListener('click', function(){
             panel.style.display = 'block';
             controlsBox.style.display = 'none';
+            explorationBox.style.display = 'none';
+            starting.style.display = 'none';
+            booting.style.display = 'none';
+            saving.style.display = 'none';
+            exploreEnd.style.display = 'none';
         });
 
     </script>
@@ -174,6 +184,8 @@
     console.log('Listo explore');
     if(flagExplo == 1){
         setTimeout(function(){
+            document.getElementById('map').setAttribute('src', ' ');
+            document.getElementById('map').setAttribute('src', '/reso/map.png');
             document.getElementById('explorationBox').style.display = 'none';
             document.getElementById('exploreEnd').style.display = 'block';
         }, 10000)
