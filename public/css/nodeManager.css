@@ -14,6 +14,46 @@ body, html {
     /* background-color: #048CDC !important; */
     font-family: 'Open Sans', sans-serif !important;
 }
+.slidecontainer {
+    width: 10vw;
+  }
+
+  .slider {
+    -webkit-appearance: none;
+    width: 20vw;
+    height: 25px;
+    background: #fff;
+    outline: none;
+    opacity: 1;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    position: absolute;
+    border-radius: 5px;
+  }
+
+  .slider:hover {
+    opacity: 1;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #24c029;
+    cursor: pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #24c029;
+    cursor: pointer;
+  }
+
+#sanitationBox{
+    display: none;
+}
 #starting{
     visibility: visible;
     opacity: 1;
@@ -24,6 +64,25 @@ body, html {
 }
 #exploreEnd{
     display: none;
+}
+#spanPercentage{
+    position: absolute;
+    top: 40vh;
+    right: 30vw;
+    font-size: 1.5rem;
+    color: #fff;
+}
+#buttonDone{
+    position: absolute;
+    bottom: 20vh;
+    right: 30vw;
+    width: 20vw;
+    height: 10vh;
+    background-color: #048CDC;
+    border: 1px solid aliceblue;
+    border-radius: 10px;
+    color: aliceblue;
+    font-size: 2rem;
 }
 #buttonSaveMap{
     position: absolute;
@@ -38,6 +97,10 @@ body, html {
     font-size: 2rem;
 }
 #map{
+    width: 300px;
+    border-radius: 10px;
+}
+#mapSani{
     width: 300px;
     border-radius: 10px;
 }
@@ -139,6 +202,7 @@ font-size: 2rem;
         padding-top: auto;
 }
 @media (min-width: 1100px) and (max-width: 1700px){
+
     #buttonSaveMap{
         position: absolute;
         bottom: 40vh;
@@ -157,6 +221,13 @@ font-size: 2rem;
         width: 300px;
         border-radius: 10px;
     }
+    #mapSani{
+        position: absolute;
+        top: 35vh;
+        left: 20vw;
+        width: 300px;
+        border-radius: 10px;
+    }
     #buttonRedoMap{
         position: absolute;
         bottom: 40vh;
@@ -171,6 +242,20 @@ font-size: 2rem;
     }
 }
 @media (min-width: 1700px) {
+    #mapSani {
+        position: absolute;
+        top: 40vh;
+        left: 20vw;
+        width: 400px;
+        border-radius: 10px;
+    }
+    #spanPercentage {
+        position: absolute;
+        top: 40vh;
+        right: 38vw;
+        font-size: 1.5rem;
+        color: #fff;
+    }
     #buttonSaveMap{
         position: absolute;
         bottom: 40vh;
@@ -217,6 +302,10 @@ font-size: 2rem;
         font-size: 1.5rem;
     }
     #map{
+        width: 200px;
+        border-radius: 10px;
+    }
+    #mapSani{
         width: 200px;
         border-radius: 10px;
     }

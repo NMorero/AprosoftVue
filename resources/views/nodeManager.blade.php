@@ -21,6 +21,69 @@
 
 
     <title>Aprosoft</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Roboto+Mono");
+
+:root {
+  --deg: 5deg;
+  --base: #43c2af;
+  --second: #7e8bc6;
+  --trackball: var(--base);
+  --range: 0%;
+  --bg: #10252f;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  flex-direction: column;
+  position: absolute;
+  width: 300px;
+  top: 32vh;
+}
+
+input[type="range"] {
+    border-radius: 10px;
+  -webkit-appearance: none;
+  width: 300px;
+  position: relative;
+
+  &:focus {
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      // transform: scale(3);
+      // transition: 0.5s all ease;
+    }
+  }
+  &:before {
+    position: absolute;
+    content: "";
+    width: var(--range);
+    height: 2px;
+    background: var(--second);
+  }
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--base);
+  height: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  border: none;
+  -webkit-appearance: none;
+  background-color: var(--trackball);
+  margin-top: -3.5px;
+  z-index: 99;
+  position: relative;
+  transition: 0.5s all ease;
+}
+    </style>
 </head>
 <body class="bodyAlign" id="body">
 
@@ -66,9 +129,20 @@
     </div>
 
     <div class="middle text-center" id="exploreEnd">
-        <img id="map" src="/reso/map.png" alt="">
+        <img id="map" src="" alt="">
         <button id="buttonSaveMap">Guardar</button>
         <button id="buttonRedoMap">Rehacer</button>
+    </div>
+
+    <div class="middle text-center" id="sanitationBox">
+        <img id="mapSani" src="" alt="">
+        <span id="spanPercentage">Porcentaje de sanitización: <span id="value"></span></span>
+        <div class="container">
+            <input id="range" type="range" value="35">
+
+          </div>
+        <button id="buttonDone">Sanitizar</button>
+        <!-- <button id="buttonRedoMap">Rehacer</button> -->
     </div>
 
     <div class="middle text-center" id="booting">
@@ -81,6 +155,34 @@
     </div>
     {{-- <script src="{{asset('js/testNode.js')}}"></script> --}}
     <script>
+        let range = document.getElementById("range");
+let base = window.getComputedStyle(document.body).getPropertyValue("--base");
+let second = window.getComputedStyle(document.body).getPropertyValue("--second");
+
+let init = (value) => {
+  document.getElementById("value").innerHTML = value;
+  document.documentElement.style.setProperty("--range", value + "%");
+}
+let updateValue = (value) => {
+  document.getElementById("value").innerHTML = Math.floor(value);
+}
+let updateVar = (value) => {
+  document.documentElement.style.setProperty("--deg", value * 3.6 + "deg");
+   document.documentElement.style.setProperty("--range", value + "%");
+  if(value >= 100) {
+    document.documentElement.style.setProperty("--trackball", second);
+  } else {
+    document.documentElement.style.setProperty("--trackball", base);
+  }
+
+}
+
+init(range.value);
+range.addEventListener("input", () => {
+  let deg = range.value * 3.6;
+  updateVar(range.value);
+  updateValue(range.value);
+});
 
 
         var buttonControls1 = document.getElementById('Controls');
@@ -185,7 +287,7 @@
     if(flagExplo == 1){
         setTimeout(function(){
             document.getElementById('map').setAttribute('src', ' ');
-            document.getElementById('map').setAttribute('src', '/reso/map.png');
+            document.getElementById('map').setAttribute('src', '/reso/map.png?s=1');
             document.getElementById('explorationBox').style.display = 'none';
             document.getElementById('exploreEnd').style.display = 'block';
         }, 10000)
@@ -205,21 +307,22 @@ btnRedo.addEventListener('click', function(){
         window.location.href = '/';
     }, 12000);
 })
-
-var btnDone = document.getElementById('buttonSaveMap');
+var btnSaveMap = document.getElementById('buttonSaveMap');
+btnSaveMap.addEventListener('click', function(){
+    document.getElementById('exploreEnd').style.display = 'none';
+    document.getElementById('sanitationBox').style.display = 'block';
+})
+var btnDone = document.getElementById('buttonDone');
 btnDone.addEventListener('click', function(){
     console.log('btnSave');
     var twist3 = new ROSLIB.Message({
         data: 1
     });
     mapStatus.publish(twist3);
-    var element = document.getElementById("body");
-        element.classList.add("bodyAlign")
-        document.getElementById('exploreEnd').style.display = 'none';
-        document.getElementById('saving').style.display = 'block';
-    setTimeout(function(){
-        window.location.href = '/home';
-    }, 15000);
+
+    document.getElementById('sanitationBox').style.display = 'none';
+    document.getElementById('saving').style.display = 'block';
+
 
 })
     var lamp_status = new ROSLIB.Topic({
