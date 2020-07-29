@@ -1,0 +1,139 @@
+.batteryContainer {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.batteryOuter {
+    position: absolute;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    top: 50px;
+    left: 120px;
+    width: 200px;
+    height: 60px;
+    transform: translate(-50%,-50%);
+    padding: 2px;
+}
+
+.batteryBump {
+    top:35px;
+    left: 222px;
+    position: absolute;
+    border-radius: 2px;
+    background-color: #fff;
+    width: 12px;
+    height: 30px;
+}
+
+#batteryLevel {
+  border-radius: 8px;
+  background-color: #6cf76c;
+  width: 20%;
+  height: 60px;
+}
+@media (max-width: 600px) and (min-width: 361px){
+    .batteryOuter {
+        position: absolute;
+        border-radius: 8px !important;
+        border: 2px solid #fff;
+        top: 20px;
+        left: 31px;
+        width: 50px;
+        height: 20px;
+        transform: translate(-50%,-50%);
+        padding: 2px;
+    }
+
+    .batteryBump {
+        top: 12px;
+        left: 58px;
+        position: absolute;
+        border-radius: 8px;
+        background-color: #fff;
+        width: 5px;
+        height: 15px;
+    }
+
+    #batteryLevel {
+        border-radius: 6px;
+        background-color: #6cf76c;
+        width: 20%;
+        height: 20px;
+    }
+}
+@media (max-width: 360px){
+    .batteryOuter {
+        position: absolute;
+        border-radius: 8px;
+        border: 2px solid #fff;
+        top: 20px;
+        left: 35px;
+        width: 50px;
+        height: 20px;
+        transform: translate(-50%,-50%);
+        padding: 2px;
+    }
+
+    .batteryBump {
+        top: 12px;
+        left: 62px;
+        position: absolute;
+        border-radius: 8px;
+        background-color: #fff;
+        width: 5px;
+        height: 15px;
+    }
+
+    #batteryLevel {
+        border-radius: 6px;
+        background-color: #6cf76c;
+        width: 20%;
+        height: 20px;
+    }
+}
+@media (max-width: 850px) and (min-width: 601px){
+
+    .batteryContainer {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .batteryOuter {
+      position: absolute;
+      border-radius: 2px;
+      border: 2px solid #fff;
+      top: 50px;
+      left: 120px;
+      width: 200px;
+      height: 60px;
+      transform: translate(-50%,-50%);
+      padding: 2px;
+  }
+
+    .batteryBump {
+        top:35px;
+        left: 222px;
+        position: absolute;
+        border-radius: 2px;
+        background-color: #fff;
+        width: 12px;
+        height: 30px;
+    }
+
+    #batteryLevel {
+      border-radius: 2px;
+      background-color: #6cf76c;
+      width: 20%;
+      height: 60px;
+    }
+}

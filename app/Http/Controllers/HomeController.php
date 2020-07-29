@@ -29,4 +29,12 @@ class HomeController extends Controller
         $missionData = json_decode($jsonMissionFile, true);
         return $missionData;
     }
+    public function setGoalsPointPlanner(Request $request){
+        $string = file_get_contents("json/goalsPointPlanner.json");
+        $json_a = json_decode($string, true);
+        array_push($json_a, $request['goal']);
+        $json = json_encode($json_a);
+        file_put_contents("json/goalsPointPlanner.json",$json);
+        return 'ok';
+    }
 }

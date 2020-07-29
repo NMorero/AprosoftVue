@@ -14,6 +14,44 @@ body, html {
     /* background-color: #048CDC !important; */
     font-family: 'Open Sans', sans-serif !important;
 }
+.batteryContainer {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.batteryOuter {
+    position: absolute;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    top: 50px;
+    left: 120px;
+    width: 200px;
+    height: 60px;
+    transform: translate(-50%,-50%);
+    padding: 2px;
+}
+
+.batteryBump {
+    top:35px;
+    left: 222px;
+    position: absolute;
+    border-radius: 2px;
+    background-color: #fff;
+    width: 12px;
+    height: 30px;
+}
+
+#batteryLevel {
+  border-radius: 8px;
+  background-color: #6cf76c;
+  width: 20%;
+  height: 60px;
+}
 #starting{
     display: none;
     visibility: visible;
@@ -28,7 +66,88 @@ body, html {
     color: #fff;
     left: 10vw;
 }
+#buttonAddPose{
+    background-color: #048CDC;
+    color: #fff;
+    border: 0px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    width: 20vw;
+    height: 8vh;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0vw;
+    top: 8vh;
+}
+#modalAddPose{
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(91, 87, 87, 0.5);
+    z-index: 998;
+}
+#boxModalPose{
+    width: 20%;
+    height: 40%;
+    padding: 2%;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 40%;
+    margin-top: 14%;
+}
+#buttonsBox{
+    width: 40vw;
+    height: 50vh;
+    position: absolute;
+    right: 10vw;
+    top: 40vh;
+}
+.btnGoal{
+    width: 30%;
+    margin-right: 1%;
+    margin-bottom: 3%;
+    height: 12%;
+    background-color: #048CDC;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+}
+.titleModal{
+    display: block;
+    width: 100%;
+    font-size: 2rem;
+    text-align: center;
+    color: #3d3d3d;
+    padding-bottom: 4%;
+    border-bottom: 1px solid #3d3d3d;
+}
+.boxInputsModal{
+    width: 90%;
+    height: 50%;
+    margin-left: 5%;
+    margin-top: 15%;
 
+}
+.boxInputsModal input {
+    width: 100%;
+    border: none;
+    background-color: #fff;
+    border-bottom: 1px solid darkgray;
+    margin-bottom: 15%;
+    font-size: 1rem;
+    text-align: center;
+}
+.btnSavePoseGoal{
+    margin-left: 15%;
+    width: 70%;
+    height: 60px;
+    background: #048CDC;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+}
 .blinking {
     animation: blinker 2s linear infinite;
 }
@@ -68,6 +187,36 @@ body, html {
     width: 10vw;
 }
 
+@media (max-width: 600px) and (min-width: 361px){
+    .batteryOuter {
+        position: absolute;
+        border-radius: 8px !important;
+        border: 2px solid #fff;
+        top: 20px;
+        left: 31px;
+        width: 50px;
+        height: 20px;
+        transform: translate(-50%,-50%);
+        padding: 2px;
+    }
+
+    .batteryBump {
+        top: 12px;
+        left: 58px;
+        position: absolute;
+        border-radius: 8px;
+        background-color: #fff;
+        width: 5px;
+        height: 15px;
+    }
+
+    #batteryLevel {
+        border-radius: 6px;
+        background-color: #6cf76c;
+        width: 20%;
+        height: 20px;
+    }
+  }
 @media (max-width: 420px){
     .middle h3{
         font-size: 3rem !important;
@@ -84,7 +233,77 @@ body, html {
         width: 25vw;
     }
 }
+@media (max-width: 360px){
+    .batteryOuter {
+        position: absolute;
+        border-radius: 8px;
+        border: 2px solid #fff;
+        top: 20px;
+        left: 35px;
+        width: 50px;
+        height: 20px;
+        transform: translate(-50%,-50%);
+        padding: 2px;
+    }
 
+    .batteryBump {
+        top: 12px;
+        left: 62px;
+        position: absolute;
+        border-radius: 8px;
+        background-color: #fff;
+        width: 5px;
+        height: 15px;
+    }
+
+    #batteryLevel {
+        border-radius: 6px;
+        background-color: #6cf76c;
+        width: 20%;
+        height: 20px;
+    }
+}
+@media (max-width: 850px) and (min-width: 601px){
+
+    .batteryContainer {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .batteryOuter {
+      position: absolute;
+      border-radius: 2px;
+      border: 2px solid #fff;
+      top: 50px;
+      left: 120px;
+      width: 200px;
+      height: 60px;
+      transform: translate(-50%,-50%);
+      padding: 2px;
+  }
+
+    .batteryBump {
+        top:35px;
+        left: 222px;
+        position: absolute;
+        border-radius: 2px;
+        background-color: #fff;
+        width: 12px;
+        height: 30px;
+    }
+
+    #batteryLevel {
+      border-radius: 2px;
+      background-color: #6cf76c;
+      width: 20%;
+      height: 60px;
+    }
+}
 @media only screen  and (min-device-width: 300px) and (orientation: landscape) {
     .middle h3{
         font-size: 3rem !important;

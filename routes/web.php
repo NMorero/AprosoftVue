@@ -36,6 +36,13 @@ Route::get('/pointPlanner', function () {
     return view('pointPlanner');
 });
 
+Route::get('/getJsonGoals', function(){
+    $string = file_get_contents("json/goalsPointPlanner.json");
+    $json_a = json_decode($string, true);
+    return $json_a;
+});
+
+Route::post('/setJsonGoals', 'HomeController@setGoalsPointPlanner');
 
 Route::get('/getTasks', 'HomeController@getTasks');
 
