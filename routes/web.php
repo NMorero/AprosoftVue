@@ -31,6 +31,12 @@ Route::get('/light', function () {
     return view('lightPage');
 });
 
+
+Route::get('/pointPlanner', function () {
+    return view('pointPlanner');
+});
+
+
 Route::get('/getTasks', 'HomeController@getTasks');
 
 Route::get('/getMissions', 'HomeController@getMissions');

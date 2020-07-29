@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=
     , initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/nodeManager.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">

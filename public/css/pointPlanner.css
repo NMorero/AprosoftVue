@@ -1,0 +1,110 @@
+body, html {
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    justify-content: center;
+    background-color: #048CDC !important;
+    font-family: 'Open Sans', sans-serif !important;
+    color: white;
+}
+
+*{
+    /* background-color: #048CDC !important; */
+    font-family: 'Open Sans', sans-serif !important;
+}
+#starting{
+    display: none;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.5s, opacity 0.5s, display 0.5s linear;
+}
+#poseBox{
+    display: block;
+    position: absolute;
+    top: 40vh;
+    font-size: 2rem;
+    color: #fff;
+    left: 10vw;
+}
+
+.blinking {
+    animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+    opacity: 0;
+    }
+}
+
+.bodyAlign{
+    align-items: center;
+}
+.middle{
+    margin:0 auto;
+    align-items:center;
+    color: #23abea;
+    text-align: center;
+}
+
+.middle h3{
+    font-size: 6rem !important;
+    text-decoration: none;
+    cursor: default;
+    color: aliceblue;
+    margin-bottom: 0px;
+}
+.waitMessage{
+    font-size: 2rem !important;
+    color: aliceblue;
+}
+
+.imgLogo{
+    position: absolute;
+    top: 5vh;
+    left: 45vw;
+    width: 10vw;
+}
+
+@media (max-width: 420px){
+    .middle h3{
+        font-size: 3rem !important;
+        text-decoration: none;
+        cursor: default;
+    }
+    .waitMessage{
+        font-size: 1rem !important;
+    }
+    .imgLogo{
+        position: absolute;
+        top: 5vh;
+        left: 37.5vw;
+        width: 25vw;
+    }
+}
+
+@media only screen  and (min-device-width: 300px) and (orientation: landscape) {
+    .middle h3{
+        font-size: 3rem !important;
+        text-decoration: none;
+        cursor: default;
+        color: aliceblue;
+    }
+    .waitMessage{
+        font-size: 1rem !important;
+    }
+}
+
+@media (min-width: 700px) and (min-height: 900px){
+    .middle h3{
+        font-size: 6rem !important;
+        text-decoration: none;
+        cursor: default;
+        color: aliceblue;
+    }
+    .waitMessage{
+        font-size: 1rem !important;
+    }
+}
