@@ -132,13 +132,13 @@ input[type="range"]::-webkit-slider-thumb {
     </div>
 
     <div class="middle text-center" id="exploreEnd">
-        <img id="map" src="" alt="">
+        <img id="map" src="reso/map.png" alt="">
         <button id="buttonSaveMap">Guardar</button>
         <button id="buttonRedoMap">Rehacer</button>
     </div>
 
     <div class="middle text-center" id="sanitationBox">
-        <img id="mapSani" src="" alt="">
+        <img id="mapSani" src="reso/map.png" alt="">
         <span id="spanPercentage">Porcentaje de sanitización: <span id="value"></span></span>
         <div class="container">
             <input id="range" type="range" value="35">
@@ -206,14 +206,20 @@ range.addEventListener("input", () => {
         var booting = document.getElementById('booting');
         var saving = document.getElementById('saving');
         var exploreEnd = document.getElementById('exploreEnd');
+        var sannitationBox = document.getElementById('sanitationBox');
         logo.addEventListener('click', function(){
-            panel.style.display = 'block';
             controlsBox.style.display = 'none';
             explorationBox.style.display = 'none';
             starting.style.display = 'none';
             booting.style.display = 'none';
             saving.style.display = 'none';
             exploreEnd.style.display = 'none';
+            sannitationBox.style.display = 'none';
+            panel.style.display = 'block';
+            setTimeout(function(){
+                panel.style.opacity = 1;
+                panel.style.visibility = 'visible';
+            }, 500)
         });
 
     </script>

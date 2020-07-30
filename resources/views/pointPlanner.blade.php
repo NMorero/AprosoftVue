@@ -37,7 +37,7 @@
     </div>
 
     <div class="middle text-center" id="poseBox">
-        <span id="spanActualGoal">Posición actual: <span id="actualGoal"></span></span>
+        <span id="spanActualGoal">Posición actual: <span id="actualGoal">(-1.00,-2,00)</span></span>
         <button id="buttonAddPose">Guardar posición</button>
     </div>
 

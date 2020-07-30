@@ -288,7 +288,38 @@ font-size: 2rem;
     }
 }
 @media (max-width: 420px){
+    .container {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        height: 50px !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        width: 90vw !important;
+        top: 70vh !important;
+        right: 5vw !important;
+    }
 
+    #buttonDone {
+        position: absolute;
+        bottom: 10vh;
+        right: 20vw;
+        width: 60vw;
+        height: 10vh;
+        background-color: #048CDC;
+        border: 1px solid aliceblue;
+        border-radius: 10px;
+        color: aliceblue;
+        font-size: 2rem;
+    }
+    #spanPercentage {
+        position: absolute;
+        width: 98vw;
+        right: 0vw;
+        top: 64vh;
+        font-size: 1.5rem;
+        color: #fff;
+    }
     #buttonSaveMap{
         position: absolute;
         bottom: 10vh;
@@ -305,9 +336,11 @@ font-size: 2rem;
         width: 200px;
         border-radius: 10px;
     }
-    #mapSani{
+    #mapSani {
         width: 200px;
         border-radius: 10px;
+        top: -5vh;
+        position: relative;
     }
     #buttonRedoMap{
         position: absolute;
